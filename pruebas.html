@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CIGSA — Maritime Routes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: #060a0e;
+      height: 600vh;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    /* ── HUD overlay ── */
+    .hud {
+      position: fixed;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .hud-top {
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hud-logo {
+      width: 36px;
+      height: 36px;
+      background: #c9a96e;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #060a0e;
+    }
+
+    .hud-title {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .station-panel {
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 28px;
+      border-radius: 16px;
+      background: rgba(6, 10, 14, 0.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,169,110,0.2);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .station-icon {
+      font-size: 24px;
+    }
+
+    .station-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .station-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c9a96e;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .station-name {
+      color: #f0f4f8;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .progress-bar-wrap {
+      bottom: 100px;
+      right: 32px;
+      width: 4px;
+      height: 200px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 100%;
+      background: linear-gradient(180deg, #c9a96e, #00c9a7);
+      border-radius: 4px;
+      transition: height 0.3s ease;
+    }
+
+    .scroll-hint {
+      bottom: 32px;
+      right: 32px;
+      color: rgba(255,255,255,0.3);
+      font-size: 11px;
+      letter-spacing: 1px;
+      font-family: 'JetBrains Mono', monospace;
+      writing-mode: vertical-rl;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HUD Elements -->
+  <div class="hud hud-top">
+    <div class="hud-logo">C</div>
+    <span class="hud-title">Maritime Routes</span>
+  </div>
+
+  <div class="hud station-panel" id="stationPanel">
+    <span class="station-icon">🚢</span>
+    <div class="station-info">
+      <span class="station-label">Current Zone</span>
+      <span class="station-name" id="stationName">PACIFIC OCEAN</span>
+    </div>
+  </div>
+
+  <div class="hud progress-bar-wrap">
+    <div class="progress-fill" id="progressFill" style="height:0%"></div>
+  </div>
+
+  <div class="hud scroll-hint">SCROLL ↓</div>
+
+  <script type="module">
+
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js';
+
+    // ════════════════════════════════════════
+    // SCENE SETUP
+    // ════════════════════════════════════════
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0e14);
+
+    const zoomLevel = 1.8;
+
+    const camera = new THREE.OrthographicCamera(
+      window.innerWidth / -2 / zoomLevel,
+      window.innerWidth / 2 / zoomLevel,
+      window.innerHeight / 2 / zoomLevel,
+      window.innerHeight / -2 / zoomLevel,
+      1, 5000
+    );
+    camera.position.z = 1000;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.body.appendChild(renderer.domElement);
+
+    // ════════════════════════════════════════
+    // MAP BACKGROUND
+    // ════════════════════════════════════════
+
+    const loader = new THREE.TextureLoader();
+
+    // Use the reference map image
+    const mapTexture = loader.load('./mapa.png');
+    mapTexture.colorSpace = THREE.SRGBColorSpace;
+
+    const mapW = 2400, mapH = 1000;
+    const mapGeo = new THREE.PlaneGeometry(mapW, mapH);
+    const mapMat = new THREE.MeshBasicMaterial({ map: mapTexture });
+    const mapMesh = new THREE.Mesh(mapGeo, mapMat);
+    scene.add(mapMesh);
+
+    // Subtle grid overlay for premium feel
+    const gridCanvas = document.createElement('canvas');
+    gridCanvas.width = 200;
+    gridCanvas.height = 200;
+    const gctx = gridCanvas.getContext('2d');
+    gctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    gctx.lineWidth = 1;
+    for (let i = 0; i <= 200; i += 40) {
+      gctx.beginPath(); gctx.moveTo(i, 0); gctx.lineTo(i, 200); gctx.stroke();
+      gctx.beginPath(); gctx.moveTo(0, i); gctx.lineTo(200, i); gctx.stroke();
+    }
+    const gridTexture = new THREE.CanvasTexture(gridCanvas);
+    gridTexture.wrapS = THREE.RepeatWrapping;
+    gridTexture.wrapT = THREE.RepeatWrapping;
+    gridTexture.repeat.set(mapW / 200, mapH / 200);
+
+    const gridGeo = new THREE.PlaneGeometry(mapW, mapH);
+    const gridMat = new THREE.MeshBasicMaterial({ map: gridTexture, transparent: true });
+    const gridMesh = new THREE.Mesh(gridGeo, gridMat);
+    gridMesh.position.z = 1;
+    scene.add(gridMesh);
+
+    // ════════════════════════════════════════
+    // ROUTE — Calibrated to real geography
+    // Map plane: 2400 x 1000
+    // x: -1200 (far west Pacific) → 1200 (far east Atlantic)
+    // y: -500 (south) → 500 (north)
+    //
+    // Geographic reference points on this map:
+    //   Japan ≈ x:-850   North America center ≈ x:-300
+    //   Guatemala ≈ x:-120  Caribbean ≈ x:0
+    //   Brazil NE ≈ x:80   West Africa ≈ x:500
+    //   Europe/UK ≈ x:550   Mediterranean ≈ x:650
+    // ════════════════════════════════════════
+
+    const routePoints = [
+      // 1. Start: East Asia / Japan coast
+      new THREE.Vector3(-1050, -50, 5),
+      new THREE.Vector3(-950, 50, 5),
+
+      // 2. Up into North Pacific ocean
+      new THREE.Vector3(-850, 180, 5),
+      new THREE.Vector3(-700, 260, 5),
+
+      // 3. ULCC zone — mid North Pacific (between Japan & Alaska)
+      new THREE.Vector3(-550, 280, 5),
+
+      // 4. Across the North Pacific
+      new THREE.Vector3(-420, 260, 5),
+      new THREE.Vector3(-330, 210, 5),
+
+      // 5. Down US west coast / approaches Central America
+      new THREE.Vector3(-260, 120, 5),
+      new THREE.Vector3(-200, 40, 5),
+
+      // 6. Guatemala — CIGSA corridor (Caribbean entrance)
+      new THREE.Vector3(-130, -20, 5),
+      new THREE.Vector3(-80, -50, 5),
+
+      // 7. Post Panamax — Caribbean Sea
+      new THREE.Vector3(-10, -30, 5),
+      new THREE.Vector3(50, -50, 5),
+
+      // 8. Down towards northern South America / Post Panamax South
+      new THREE.Vector3(30, -130, 5),
+      new THREE.Vector3(-10, -220, 5),
+
+      // 9. Curve back up through the Atlantic
+      new THREE.Vector3(60, -160, 5),
+      new THREE.Vector3(130, -60, 5),
+      new THREE.Vector3(200, 30, 5),
+
+      // 10. Up through mid-Atlantic
+      new THREE.Vector3(300, 130, 5),
+      new THREE.Vector3(380, 200, 5),
+
+      // 11. ULCC zone — North Atlantic (between US & Europe)
+      new THREE.Vector3(460, 260, 5),
+
+      // 12. Approaching Europe
+      new THREE.Vector3(560, 280, 5),
+      new THREE.Vector3(660, 250, 5),
+
+      // 13. European / African coast
+      new THREE.Vector3(780, 180, 5),
+      new THREE.Vector3(900, 100, 5),
+      new THREE.Vector3(1050, 30, 5),
+    ];
+
+    const curve = new THREE.CatmullRomCurve3(routePoints);
+
+    // ── Animated dashed route line ──
+    const curvePoints = curve.getPoints(600);
+    const routeGeo = new THREE.BufferGeometry().setFromPoints(curvePoints);
+    const routeMat = new THREE.LineDashedMaterial({
+      color: 0xff2222,
+      dashSize: 18,
+      gapSize: 12,
+      linewidth: 1,
+    });
+    const routeLine = new THREE.Line(routeGeo, routeMat);
+    routeLine.computeLineDistances();
+    scene.add(routeLine);
+
+    // ── Glow trail behind route ──
+    const glowMat = new THREE.LineBasicMaterial({
+      color: 0xff4444,
+      transparent: true,
+      opacity: 0.15,
+      linewidth: 1,
+    });
+    const glowLine = new THREE.Line(routeGeo.clone(), glowMat);
+    glowLine.position.z = 4;
+    scene.add(glowLine);
+
+    // ════════════════════════════════════════
+    // SHIP BUILDER (creates a ship sprite)
+    // ════════════════════════════════════════
+
+    function createShipSprite(label, size = 48) {
+      const c = document.createElement('canvas');
+      c.width = 180; c.height = 100;
+      const ctx = c.getContext('2d');
+
+      // Ship body
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(30, 60);
+      ctx.lineTo(40, 35);
+      ctx.lineTo(140, 35);
+      ctx.lineTo(150, 60);
+      ctx.lineTo(25, 60);
+      ctx.closePath();
+      ctx.fill();
+
+      // Ship hull
+      ctx.fillStyle = '#dddddd';
+      ctx.beginPath();
+      ctx.moveTo(25, 60);
+      ctx.lineTo(35, 75);
+      ctx.lineTo(145, 75);
+      ctx.lineTo(155, 60);
+      ctx.closePath();
+      ctx.fill();
+
+      // Cabin
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(65, 20, 50, 18);
+
+      // Smokestack
+      ctx.fillStyle = '#cccccc';
+      ctx.fillRect(80, 5, 12, 18);
+
+      // Smoke puff
+      ctx.fillStyle = 'rgba(200,200,200,0.6)';
+      ctx.beginPath();
+      ctx.arc(86, 3, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Label
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 16px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(label, 90, 95);
+
+      const tex = new THREE.CanvasTexture(c);
+      const mat = new THREE.SpriteMaterial({ map: tex, transparent: true });
+      const sprite = new THREE.Sprite(mat);
+      sprite.scale.set(size * 1.8, size, 1);
+      return sprite;
+    }
+
+    // ════════════════════════════════════════
+    // STATION MARKERS ON MAP
+    // Positions calibrated to real geography
+    // ════════════════════════════════════════
+
+    const stations = [
+      {
+        progress: 0.0,
+        name: 'EAST ASIA — PACIFIC',
+        emoji: '🌊',
+        position: new THREE.Vector3(-1050, -50, 12),
+        type: 'start'
+      },
+      {
+        // ULCC left — mid North Pacific (between Japan & Alaska)
+        progress: 0.15,
+        name: 'ULCC — NORTH PACIFIC',
+        emoji: '🚢',
+        position: new THREE.Vector3(-550, 280, 12),
+        type: 'ulcc'
+      },
+      {
+        // Guatemala — CIGSA corridor
+        progress: 0.38,
+        name: 'CIGSA — CORREDOR INTEROCEÁNICO',
+        emoji: '⚓',
+        position: new THREE.Vector3(-130, -20, 12),
+        type: 'cigsa'
+      },
+      {
+        // Post Panamax upper — Caribbean Sea
+        progress: 0.46,
+        name: 'POST PANAMAX — CARIBBEAN',
+        emoji: '🚢',
+        position: new THREE.Vector3(50, -50, 12),
+        type: 'postpanamax'
+      },
+      {
+        // Post Panamax lower — off northern South America
+        progress: 0.54,
+        name: 'POST PANAMAX — SOUTH ATLANTIC',
+        emoji: '🚢',
+        position: new THREE.Vector3(-10, -220, 12),
+        type: 'postpanamax'
+      },
+      {
+        // ULCC right — North Atlantic (between US east coast & Europe)
+        progress: 0.78,
+        name: 'ULCC — NORTH ATLANTIC',
+        emoji: '🚢',
+        position: new THREE.Vector3(460, 260, 12),
+        type: 'ulcc'
+      },
+      {
+        progress: 0.95,
+        name: 'EUROPE — ATLANTIC',
+        emoji: '🌍',
+        position: new THREE.Vector3(1050, 30, 12),
+        type: 'end'
+      },
+    ];
+
+    // Place station dots on map
+    stations.forEach(s => {
+      // Glowing station dot (yellow/gold)
+      const dotGeo = new THREE.CircleGeometry(6, 32);
+      const dotMat = new THREE.MeshBasicMaterial({
+        color: 0xc9a96e,
+        transparent: true,
+        opacity: 0.95
+      });
+      const dot = new THREE.Mesh(dotGeo, dotMat);
+      dot.position.copy(s.position);
+      dot.position.z = 10;
+      scene.add(dot);
+
+      // Outer ring pulse (yellow/gold)
+      const ringGeo = new THREE.RingGeometry(10, 12, 32);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0xc9a96e,
+        transparent: true,
+        opacity: 0.35,
+        side: THREE.DoubleSide
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.copy(s.position);
+      ring.position.z = 10;
+      ring.userData.baseScale = 1;
+      scene.add(ring);
+
+      // Soft glow halo behind each dot
+      const haloGeo = new THREE.CircleGeometry(18, 32);
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: 0xc9a96e,
+        transparent: true,
+        opacity: 0.10
+      });
+      const halo = new THREE.Mesh(haloGeo, haloMat);
+      halo.position.copy(s.position);
+      halo.position.z = 9;
+      scene.add(halo);
+    });
+
+    // ── CIGSA highlight marker ──
+    const cigsaStation = stations.find(s => s.type === 'cigsa');
+    const cigsaGlowGeo = new THREE.CircleGeometry(20, 32);
+    const cigsaGlowMat = new THREE.MeshBasicMaterial({
+      color: 0xc9a96e,
+      transparent: true,
+      opacity: 0.12
+    });
+    const cigsaGlow = new THREE.Mesh(cigsaGlowGeo, cigsaGlowMat);
+    cigsaGlow.position.copy(cigsaStation.position);
+    cigsaGlow.position.z = 8;
+    scene.add(cigsaGlow);
+
+    // ════════════════════════════════════════
+    // MAIN SHIP (follows scroll)
+    // ════════════════════════════════════════
+
+    const mainShip = createShipSprite('', 50);
+    mainShip.position.z = 20;
+    scene.add(mainShip);
+
+    // Ship glow (yellow/gold)
+    const shipGlowGeo = new THREE.CircleGeometry(15, 32);
+    const shipGlowMat = new THREE.MeshBasicMaterial({
+      color: 0xc9a96e,
+      transparent: true,
+      opacity: 0.30
+    });
+    const shipGlow = new THREE.Mesh(shipGlowGeo, shipGlowMat);
+    shipGlow.position.z = 18;
+    scene.add(shipGlow);
+
+    // ════════════════════════════════════════
+    // SCROLL TRACKING
+    // ════════════════════════════════════════
+
+    let scrollProgress = 0;
+    let targetProgress = 0;
+
+    window.addEventListener('scroll', () => {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      targetProgress = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+    });
+
+    // ════════════════════════════════════════
+    // DOM REFS
+    // ════════════════════════════════════════
+
+    const stationNameEl = document.getElementById('stationName');
+    const progressFill = document.getElementById('progressFill');
+    let time = 0;
+
+    // ════════════════════════════════════════
+    // ANIMATION LOOP
+    // ════════════════════════════════════════
+
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.016;
+
+      // Smooth scroll interpolation
+      scrollProgress += (targetProgress - scrollProgress) * 0.06;
+
+      // Ship position on curve
+      const t = Math.max(0, Math.min(1, scrollProgress));
+      const point = curve.getPoint(t);
+      mainShip.position.x = point.x;
+      mainShip.position.y = point.y;
+
+      // Ship glow follows
+      shipGlow.position.x = point.x;
+      shipGlow.position.y = point.y;
+      shipGlow.scale.setScalar(1 + Math.sin(time * 3) * 0.15);
+
+      // Camera follows ship smoothly
+      camera.position.x += (point.x - camera.position.x) * 0.04;
+      camera.position.y += (point.y - camera.position.y) * 0.04;
+
+      // CIGSA glow pulse
+      cigsaGlow.scale.setScalar(1 + Math.sin(time * 2) * 0.3);
+
+      // Update station name
+      let currentStation = stations[0];
+      for (const s of stations) {
+        if (scrollProgress >= s.progress) currentStation = s;
+      }
+      stationNameEl.textContent = currentStation.name;
+
+      // Update progress bar
+      progressFill.style.height = `${scrollProgress * 100}%`;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // ════════════════════════════════════════
+    // RESPONSIVE
+    // ════════════════════════════════════════
+
+    window.addEventListener('resize', () => {
+      camera.left = window.innerWidth / -2 / zoomLevel;
+      camera.right = window.innerWidth / 2 / zoomLevel;
+      camera.top = window.innerHeight / 2 / zoomLevel;
+      camera.bottom = window.innerHeight / -2 / zoomLevel;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+  </script>
+
+</body>
+</html>
