@@ -1,0 +1,227 @@
+// ═══════════════════════════════════════════════════════════════
+// CIGSA — Advanced Animation System (SCSS Reference)
+// ═══════════════════════════════════════════════════════════════
+// This file documents the SASS architecture. The compiled output
+// is integrated directly into styles.css for zero-build usage.
+// ═══════════════════════════════════════════════════════════════
+
+// ── VARIABLES ──
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+$ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+$dur-fast: 0.3s;
+$dur-normal: 0.6s;
+$dur-slow: 1s;
+$dur-cinematic: 1.4s;
+
+$gold: #c9a96e;
+$gold-hover: #dfc28e;
+$gold-muted: rgba(201, 169, 110, 0.15);
+$teal: #00c9a7;
+
+// ── MIXINS ──
+@mixin stagger-children($count: 12, $base-delay: 0.08s) {
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      transition-delay: #{$i * $base-delay};
+    }
+  }
+}
+
+@mixin shimmer-text {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 1) 40%,
+    rgba(201, 169, 110, 0.9) 50%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@mixin gradient-border($speed: 3s) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--gradient-angle, 0deg),
+      transparent 0%,
+      $gold 25%,
+      transparent 50%,
+      $gold 75%,
+      transparent 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $dur-normal $ease-out-expo;
+    animation: gradient-rotate $speed linear infinite;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@mixin floating-particle($size, $delay, $duration, $x-range) {
+  position: absolute;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background: rgba($gold, 0.3);
+  animation: float-particle $duration $ease-in-out-circ infinite;
+  animation-delay: $delay;
+}
+
+// ── KEYFRAMES ──
+@keyframes shimmer {
+  0%   { background-position: 150% center; }
+  100% { background-position: -50% center; }
+}
+
+@keyframes gradient-rotate {
+  0%   { --gradient-angle: 0deg; }
+  100% { --gradient-angle: 360deg; }
+}
+
+@keyframes float-particle {
+  0%, 100% { 
+    transform: translateY(0) translateX(0) scale(1); 
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  50% { 
+    transform: translateY(-120px) translateX(30px) scale(1.5); 
+    opacity: 0.3;
+  }
+  90% { opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    text-shadow: 0 0 20px rgba($teal, 0.3), 0 0 40px rgba($teal, 0.1);
+  }
+  50% { 
+    text-shadow: 0 0 30px rgba($teal, 0.5), 0 0 60px rgba($teal, 0.2), 0 0 90px rgba($teal, 0.1);
+  }
+}
+
+@keyframes hero-reveal {
+  0% {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-text-up {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes noise-shift {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-5%, -5%); }
+  20%  { transform: translate(-10%, 5%); }
+  30%  { transform: translate(5%, -10%); }
+  40%  { transform: translate(-5%, 15%); }
+  50%  { transform: translate(-10%, 5%); }
+  60%  { transform: translate(15%, 0); }
+  70%  { transform: translate(0, 10%); }
+  80%  { transform: translate(-15%, 0); }
+  90%  { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}
+
+// ── ANIMATION CLASSES ──
+.anim-reveal {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path $dur-cinematic $ease-out-expo, opacity $dur-cinematic $ease-out-expo;
+  
+  &.visible {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: transform $dur-slow $ease-out-expo, opacity $dur-slow $ease-out-expo;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: transform $dur-slow $ease-out-expo, opacity $dur-slow $ease-out-expo;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.anim-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: transform $dur-slow $ease-out-expo, opacity $dur-slow $ease-out-expo;
+  
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.anim-blur {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(20px);
+  transition: filter $dur-slow $ease-out-expo, transform $dur-slow $ease-out-expo, opacity $dur-slow $ease-out-expo;
+  
+  &.visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}

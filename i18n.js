@@ -23,7 +23,7 @@
         if (el.dataset.i18nCached) return;
         const attr = el.dataset.i18nAttr;
         if (attr) {
-            el.dataset.i18nDefault = el.getAttribute(attr) || '';
+            el.dataset.i18nDefault = el.getAttribute(attr) || el[attr] || '';
         } else if (el.dataset.i18nHtml !== undefined || el.innerHTML !== el.textContent) {
             el.dataset.i18nDefault = el.innerHTML.trim();
             el.dataset.i18nHtml = '';
@@ -88,6 +88,7 @@
         { selector: '.nav-links li:nth-child(7) a', key: 'nav.equipo' },
         { selector: '.btn-investor', key: 'nav.requestAccess' },
         { selector: '.mobile-toggle', key: 'nav.menu', attr: 'aria-label' },
+        { selector: '.lang-switch', key: 'nav.langAria', attr: 'aria-label' },
         { selector: '.footer-copy', key: 'footer.copy' },
         { selector: '.footer-disclaimer', key: 'footer.disclaimer' },
         { selector: '.footer-col:nth-child(2) h4', key: 'footer.navTitle' },
@@ -148,6 +149,34 @@
             { selector: '#teaser-equipo .leader-card:nth-child(3) .leader-role', key: 'index.lead.role3' },
             { selector: '#teaser-equipo .leader-card:nth-child(3) .leader-title', key: 'index.lead.title3' },
             { selector: '#teaser-equipo .home-cta-row .btn', key: 'index.lead.cta' },
+            { selector: '.home-benchmark table thead th:nth-child(1)', key: 'index.table.h1' },
+            { selector: '.home-benchmark table thead th:nth-child(2)', key: 'index.table.h2' },
+            { selector: '.home-benchmark table thead th:nth-child(3)', key: 'index.table.h3' },
+            { selector: '.home-benchmark table thead th:nth-child(4)', key: 'index.table.h4' },
+            { selector: '.home-benchmark table tbody tr:nth-child(1) td:nth-child(1)', key: 'index.table.r1c1' },
+            { selector: '.home-benchmark table tbody tr:nth-child(1) td:nth-child(2)', key: 'index.table.r1c2' },
+            { selector: '.home-benchmark table tbody tr:nth-child(1) td:nth-child(3)', key: 'index.table.r1c3' },
+            { selector: '.home-benchmark table tbody tr:nth-child(1) td:nth-child(4)', key: 'index.table.r1c4' },
+            { selector: '.home-benchmark table tbody tr:nth-child(2) td:nth-child(1)', key: 'index.table.r2c1' },
+            { selector: '.home-benchmark table tbody tr:nth-child(2) td:nth-child(2)', key: 'index.table.r2c2' },
+            { selector: '.home-benchmark table tbody tr:nth-child(2) td:nth-child(3)', key: 'index.table.r2c3' },
+            { selector: '.home-benchmark table tbody tr:nth-child(2) td:nth-child(4)', key: 'index.table.r2c4' },
+            { selector: '.home-benchmark table tbody tr:nth-child(3) td:nth-child(1)', key: 'index.table.r3c1' },
+            { selector: '.home-benchmark table tbody tr:nth-child(3) td:nth-child(2)', key: 'index.table.r3c2' },
+            { selector: '.home-benchmark table tbody tr:nth-child(3) td:nth-child(3)', key: 'index.table.r3c3' },
+            { selector: '.home-benchmark table tbody tr:nth-child(3) td:nth-child(4)', key: 'index.table.r3c4' },
+            { selector: '.home-benchmark table tbody tr:nth-child(4) td:nth-child(1)', key: 'index.table.r4c1' },
+            { selector: '.home-benchmark table tbody tr:nth-child(4) td:nth-child(2)', key: 'index.table.r4c2' },
+            { selector: '.home-benchmark table tbody tr:nth-child(4) td:nth-child(3)', key: 'index.table.r4c3' },
+            { selector: '.home-benchmark table tbody tr:nth-child(4) td:nth-child(4)', key: 'index.table.r4c4' },
+            { selector: '.home-benchmark table tbody tr:nth-child(5) td:nth-child(1)', key: 'index.table.r5c1' },
+            { selector: '.home-benchmark table tbody tr:nth-child(5) td:nth-child(2)', key: 'index.table.r5c2' },
+            { selector: '.home-benchmark table tbody tr:nth-child(5) td:nth-child(3)', key: 'index.table.r5c3' },
+            { selector: '.home-benchmark table tbody tr:nth-child(5) td:nth-child(4)', key: 'index.table.r5c4' },
+            { selector: '.home-benchmark table tbody tr:nth-child(6) td:nth-child(1)', key: 'index.table.r6c1' },
+            { selector: '.home-benchmark table tbody tr:nth-child(6) td:nth-child(2)', key: 'index.table.r6c2' },
+            { selector: '.home-benchmark table tbody tr:nth-child(6) td:nth-child(3)', key: 'index.table.r6c3' },
+            { selector: '.home-benchmark table tbody tr:nth-child(6) td:nth-child(4)', key: 'index.table.r6c4' },
         ],
         proyecto: [
             { selector: '.page-hero .section-tag', key: 'proyecto.hero.tag' },
@@ -187,6 +216,23 @@
             { selector: '.page-hero .hero-subtitle', key: 'equipo.hero.subtitle' },
             { selector: '.page-hero .btn-primary', key: 'equipo.hero.btn1' },
             { selector: '.page-hero .btn-outline', key: 'equipo.hero.btn2' },
+            { selector: '#liderazgo .section-tag', key: 'equipo.lead.tag' },
+            { selector: '#liderazgo h2', key: 'equipo.lead.title' },
+            { selector: '#liderazgo .section-desc', key: 'equipo.lead.desc' },
+            { selector: '#liderazgo .bot-title', key: 'equipo.eco.title' },
+            { selector: '.section-dark h2', key: 'equipo.contact.title' },
+            { selector: '.section-dark .section-desc', key: 'equipo.contact.desc' },
+            { selector: '#contactForm label:nth-of-type(1)', key: 'equipo.form.name' },
+            { selector: '#contactForm label:nth-of-type(2)', key: 'equipo.form.email' },
+            { selector: '#contactForm label:nth-of-type(3)', key: 'equipo.form.org' },
+            { selector: '#contactForm label:nth-of-type(4)', key: 'equipo.form.type' },
+            { selector: '#contactForm label:nth-of-type(5)', key: 'equipo.form.message' },
+            { selector: '#contactForm input[type="text"]', key: 'equipo.form.namePh', attr: 'placeholder' },
+            { selector: '#contactForm input[type="email"]', key: 'equipo.form.emailPh', attr: 'placeholder' },
+            { selector: '#contactForm .form-group:nth-child(3) input', key: 'equipo.form.orgPh', attr: 'placeholder' },
+            { selector: '#contactForm textarea', key: 'equipo.form.msgPh', attr: 'placeholder' },
+            { selector: '#contactForm .btn-submit', key: 'equipo.form.submit' },
+            { selector: '#contactForm .checkbox-label span', key: 'equipo.form.privacy' },
         ],
     };
 
