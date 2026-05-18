@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initScrollAnimations() {
     const elements = document.querySelectorAll(
-        '.infra-card, .bot-step, .coingt-card, .agent-card, .press-card, .insight-card, .team-card, .governance-highlight, .benchmark, .data-room, .gov-column, .port-showcase'
+        '.infra-card, .bot-step, .coingt-card, .agent-card, .press-card, .insight-card, .team-card, .leader-card, .ecosystem-card, .track-card, .home-pillar, .governance-highlight, .benchmark, .data-room, .gov-column, .port-showcase, .home-split-visual'
     );
 
     elements.forEach(el => el.classList.add('fade-in'));
@@ -49,15 +49,16 @@ function initNavbar() {
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    const scrollThreshold = 24;
+
+    const updateNavbarOnScroll = () => {
         const currentScroll = window.pageYOffset;
-        if (currentScroll > 100) {
-            navbar.style.background = 'rgba(8, 11, 15, 0.95)';
-        } else {
-            navbar.style.background = 'rgba(8, 11, 15, 0.85)';
-        }
+        navbar.classList.toggle('navbar-scrolled', currentScroll > scrollThreshold);
         lastScroll = currentScroll;
-    });
+    };
+
+    updateNavbarOnScroll();
+    window.addEventListener('scroll', updateNavbarOnScroll, { passive: true });
 
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');

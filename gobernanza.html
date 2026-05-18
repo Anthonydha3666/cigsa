@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-page="gobernanza">
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="index.html" class="nav-logo">
                 <span class="logo-icon">C</span>
                 <span class="logo-text">CIGSA</span>
-            </div>
+            </a>
             <ul class="nav-links">
                 <li><a href="proyecto.html">PROYECTO</a></li>
                 <li><a href="inversion.html">INVERSIÓN</a></li>
@@ -24,8 +24,12 @@
                 <li><a href="equipo-contacto.html">EQUIPO Y CONTACTO</a></li>
             </ul>
             <div class="nav-right">
-                <span class="lang-switch">EN | ES</span>
-                <a href="equipo-contacto.html" class="btn-investor">Investor Contact</a>
+                <div class="lang-switch" role="group" aria-label="Idioma">
+                    <button type="button" class="lang-btn" data-lang="en">EN</button>
+                    <span class="lang-sep">|</span>
+                    <button type="button" class="lang-btn" data-lang="es">ES</button>
+                </div>
+                <a href="equipo-contacto.html" class="btn-investor">Solicitar acceso</a>
             </div>
             <button class="mobile-toggle" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -37,8 +41,8 @@
         <section class="page-hero">
             <div class="container">
                 <p class="section-tag">03 — GOBERNANZA</p>
-                <h1>Governance model and stakeholder alignment</h1>
-                <p class="hero-subtitle">A governance architecture designed to align investors, communities, and long-term project execution through structured participation and documented social license.</p>
+                <h1>Capitalismo inclusivo y gobernanza territorial</h1>
+                <p class="hero-subtitle">Modelo de participación comunitaria alineado con comunidades Xinka y +3.500 familias locales. CIGSA como Master Developer y propietario del 100% del suelo. Acuerdo de Gobierno AG 270-2013: reconocimiento institucional, no control gubernamental — adhesión voluntaria de comunidades.</p>
                 <div class="hero-buttons">
                     <a href="equipo-contacto.html" class="btn btn-primary">Speak with the team</a>
                     <a href="index.html" class="btn btn-outline">Back to overview</a>
@@ -48,8 +52,8 @@
 
         <section class="section">
             <div class="container">
-                <h2>Inclusive Governance Model</h2>
-                <p class="section-desc">CIGSA's land and social risk is structurally mitigated through direct community equity participation — converting local stakeholders into aligned shareholders.</p>
+                <h2>Modelo de gobernanza inclusiva</h2>
+                <p class="section-desc">El riesgo de tierra y social se mitiga mediante participación accionarial directa — modelo Xinka y familias del corredor. No es expropiación: los terratenientes son accionistas. La Biblioteca de Crisis documenta narrativas de resiliencia territorial alineadas con La Ruta del Futuro.</p>
 
                 <div class="governance-highlight">
                     <span class="gov-label">Local Guatemalan Families</span>
@@ -108,6 +112,8 @@
         </div>
     </footer>
 
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

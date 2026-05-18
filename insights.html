@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-page="insights">
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="index.html" class="nav-logo">
                 <span class="logo-icon">C</span>
                 <span class="logo-text">CIGSA</span>
-            </div>
+            </a>
             <ul class="nav-links">
                 <li><a href="proyecto.html">PROYECTO</a></li>
                 <li><a href="inversion.html">INVERSIÓN</a></li>
@@ -24,8 +24,12 @@
                 <li><a href="equipo-contacto.html">EQUIPO Y CONTACTO</a></li>
             </ul>
             <div class="nav-right">
-                <span class="lang-switch">EN | ES</span>
-                <a href="equipo-contacto.html" class="btn-investor">Investor Contact</a>
+                <div class="lang-switch" role="group" aria-label="Idioma">
+                    <button type="button" class="lang-btn" data-lang="en">EN</button>
+                    <span class="lang-sep">|</span>
+                    <button type="button" class="lang-btn" data-lang="es">ES</button>
+                </div>
+                <a href="equipo-contacto.html" class="btn-investor">Solicitar acceso</a>
             </div>
             <button class="mobile-toggle" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -38,7 +42,7 @@
             <div class="container">
                 <p class="section-tag">06 — INSIGHTS</p>
                 <h1>Strategic analysis and institutional reading</h1>
-                <p class="hero-subtitle">A dedicated editorial layer for market observations, infrastructure thinking, logistics analysis, and governance perspectives around the corridor.</p>
+                <p class="hero-subtitle">Thought leadership del corredor: complementariedad con Panamá, capitalismo inclusivo (+3.530 familias), integración digital e hitos operativos 2026 (ley portuaria, Fast Track, COINGT).</p>
                 <div class="hero-buttons">
                     <a href="equipo-contacto.html" class="btn btn-primary">Ask for more detail</a>
                     <a href="index.html" class="btn btn-outline">Back to overview</a>
@@ -104,6 +108,8 @@
         </div>
     </footer>
 
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
