@@ -463,8 +463,6 @@ function initShimmerTitles() {
 /* ══════════════════════════════════════
    PORTAL MARINO — 3 plataformas del ecosistema
    ══════════════════════════════════════ */
-const PORTAL_STORAGE_KEY = 'cigsa-portal-dismissed';
-
 function initMarinePortal() {
     const portal = document.getElementById('marinePortal');
     if (!portal) return;
@@ -473,7 +471,6 @@ function initMarinePortal() {
     const stayBtn = portal.querySelector('[data-portal-action="stay"]');
 
     function dismissPortal() {
-        sessionStorage.setItem(PORTAL_STORAGE_KEY, '1');
         portal.classList.add('is-closing');
         document.body.classList.remove('portal-open');
         portal.setAttribute('aria-hidden', 'true');
@@ -492,12 +489,6 @@ function initMarinePortal() {
         portal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('portal-open');
         if (closeBtn) closeBtn.focus();
-    }
-
-    if (sessionStorage.getItem(PORTAL_STORAGE_KEY) === '1') {
-        portal.classList.add('is-hidden');
-        portal.setAttribute('aria-hidden', 'true');
-        return;
     }
 
     openPortal();
