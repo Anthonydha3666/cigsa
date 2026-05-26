@@ -2630,32 +2630,13 @@ body.portal-open {
 }
 
 .portal-card__title {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
     margin: 0;
-}
-
-.portal-card__name {
     font-size: 1.35rem;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: #f0f6fc;
     line-height: 1.2;
-}
-
-.portal-card__subtitle {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: rgba(201, 162, 39, 0.9);
-    line-height: 1.3;
-}
-
-.portal-card h3 {
-    font-size: 1.35rem;
-    margin: 0;
-    color: #f0f6fc;
 }
 
 .portal-card__intro,
