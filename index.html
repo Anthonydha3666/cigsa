@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="home-page" data-page="index">
+    <!-- Portal marino — elegir plataforma del ecosistema -->
+    <div id="marinePortal" class="marine-portal" role="dialog" aria-modal="true" aria-labelledby="portal-title" aria-hidden="false">
+        <div class="marine-portal__ocean" aria-hidden="true">
+            <div class="marine-wave marine-wave--1"></div>
+            <div class="marine-wave marine-wave--2"></div>
+            <div class="marine-wave marine-wave--3"></div>
+            <div class="marine-portal__bubbles">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="marine-portal__compass" aria-hidden="true">✦</div>
+        </div>
+        <div class="marine-portal__panel">
+            <div class="marine-portal__toolbar">
+                <div class="lang-switch marine-portal__lang" role="group" aria-label="Language" data-i18n="portal.langAria" data-i18n-attr="aria-label">
+                    <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+                    <span class="lang-sep">|</span>
+                    <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+                </div>
+                <button type="button" class="marine-portal__close" id="portalClose" aria-label="Close" data-i18n="portal.close" data-i18n-attr="aria-label">&times;</button>
+            </div>
+            <p class="section-tag" data-i18n="portal.tag">INTEROCEANIC ECOSYSTEM</p>
+            <h2 id="portal-title" data-i18n="portal.title">Choose your maritime route</h2>
+            <p class="marine-portal__lead" data-i18n="portal.lead">Three platforms connected to the Interoceanic Corridor of Guatemala. 372 km · two oceans · one logistics future.</p>
+            <div class="marine-portal__grid">
+                <article class="portal-card portal-card--featured" data-portal-card>
+                    <span class="portal-card__badge" data-i18n="portal.cigsa.badge">INSTITUTIONAL PLATFORM</span>
+                    <span class="portal-card__icon" aria-hidden="true">⚓</span>
+                    <h3>CIGSA</h3>
+                    <p data-i18n="portal.cigsa.desc">Global Integrated Interoceanic Infrastructure Platform — investment, governance, project details and institutional access.</p>
+                    <span class="portal-card__cta" data-i18n="portal.cigsa.cta">Enter the official site</span>
+                    <button type="button" class="portal-card__hit" data-portal-action="stay" aria-label="Enter CIGSA" data-i18n="portal.cigsa.aria" data-i18n-attr="aria-label"></button>
+                </article>
+                <a href="https://coingt.com/index.html" class="portal-card portal-card--coingt" target="_blank" rel="noopener noreferrer" data-portal-card>
+                    <span class="portal-card__badge" data-i18n="portal.coingt.badge">DIGITAL ASSET</span>
+                    <span class="portal-card__icon" aria-hidden="true">◈</span>
+                    <h3>COINGT</h3>
+                    <p data-i18n="portal.coingt.desc">Infrastructure participation token. Heart of the Americas — global trade and regulated tokenization.</p>
+                    <span class="portal-card__cta portal-card__cta--external" data-i18n="portal.coingt.cta">Go to coingt.com →</span>
+                </a>
+                <a href="https://www.larutadelfuturo.com/" class="portal-card portal-card--ruta" target="_blank" rel="noopener noreferrer" data-portal-card>
+                    <span class="portal-card__badge" data-i18n="portal.ruta.badge">SOCIAL CAMPAIGN</span>
+                    <span class="portal-card__icon" aria-hidden="true">🌊</span>
+                    <h3>La Ruta del Futuro</h3>
+                    <p data-i18n="portal.ruta.desc">Ocean to ocean. Community narrative, 3,500+ families and the new route of international trade.</p>
+                    <span class="portal-card__cta portal-card__cta--external" data-i18n="portal.ruta.cta">Go to larutadelfuturo.com →</span>
+                </a>
+            </div>
+            <p class="marine-portal__footnote" data-i18n="portal.footnote">Complementarity with the Panama Canal · 100% private project · AG 270-2013</p>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -43,21 +94,16 @@
     <!-- A. Hero — Propuesta de valor estratégica -->
     <section class="hero hero-home" id="inicio">
         <div class="hero-bg" aria-hidden="true">
-            <img src="./barc01.jpeg" alt="Infraestructura portuaria e interoceánica CIGSA">
+            <img src="./images/barc01.jpeg" alt="Interoceanic port and infrastructure — CIGSA">
             <div class="hero-bg-overlay"></div>
-        </div>
-        <div class="hero-bg-labels">
-            <span class="hero-label left">SAN LUIS</span>
-            <span class="hero-label right">SAN JORGE</span>
-            <span class="hero-label center">372 KM</span>
         </div>
         <div class="hero-content">
             <p class="section-tag">CIGSA — PLATAFORMA ESTRATÉGICA</p>
             <h1>Global Integrated Interoceanic Infrastructure Platform</h1>
             <p class="hero-subtitle">Una plataforma de infraestructura de capital privado de $8B bajo el modelo Build-Operate-Transfer, posicionada como alternativa soberana al Canal de Panamá y como nuevo sistema logístico bioceánico para el comercio del siglo XXI.</p>
             <div class="hero-buttons">
-                <a href="proyecto.html" class="btn btn-primary">Ver proyecto</a>
-                <a href="inversion.html" class="btn btn-outline">Estructura de inversión</a>
+                <a href="./proyecto.html" class="btn btn-primary">Ver proyecto</a>
+                <a href="./inversion.html" class="btn btn-outline">Estructura de inversión</a>
             </div>
         </div>
         <div class="hero-stats">
@@ -102,7 +148,7 @@
                 </article>
             </div>
             <div class="home-cta-row">
-                <a href="proyecto.html" class="btn btn-primary">Ver proyecto completo</a>
+                <a href="./proyecto.html" class="btn btn-primary">Ver proyecto completo</a>
             </div>
         </div>
     </section>
@@ -182,7 +228,7 @@
                     <li>7.6612% de dividendos distribuibles asignados a titulares COINGT</li>
                     <li>Marco regulatorio digital en El Salvador</li>
                 </ul>
-                <a href="inversion.html" class="btn btn-primary">Explorar estructura de inversión</a>
+                <a href="./inversion.html" class="btn btn-primary">Explorar estructura de inversión</a>
             </div>
             <div class="home-split-visual">
                 <img src="./images/barc.jpeg" alt="Estructura financiera e infraestructura del proyecto CIGSA">
@@ -210,7 +256,7 @@
                     <li>Reduce exposición ESG para inversores institucionales</li>
                     <li>Licencia social documentada para operación</li>
                 </ul>
-                <a href="gobernanza.html" class="btn btn-outline">Conocer el modelo de gobernanza</a>
+                <a href="./gobernanza.html" class="btn btn-outline">Conocer el modelo de gobernanza</a>
             </div>
         </div>
     </section>
@@ -288,6 +334,7 @@
     </footer>
 
     <script src="translations.js"></script>
+    <script src="translations-pages.js"></script>
     <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>

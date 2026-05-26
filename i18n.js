@@ -1,10 +1,11 @@
 /**
  * CIGSA — i18n ES ↔ EN
  * Texto base en español en el HTML; traducciones al inglés en translations.js.
- * Detecta idioma del navegador en la primera visita.
+ * Idioma por defecto: inglés. ES solo si el usuario lo eligió antes.
  */
 (function () {
     const STORAGE_KEY = 'cigsa-lang';
+    const DEFAULT_LANG = 'en';
 
     function getPageId() {
         if (document.body.dataset.page) return document.body.dataset.page;
@@ -13,10 +14,15 @@
     }
 
     function detectDefaultLang() {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored === 'en' || stored === 'es') return stored;
-        const nav = (navigator.language || navigator.userLanguage || 'es').toLowerCase();
-        return nav.startsWith('en') ? 'en' : 'es';
+        return localStorage.getItem(STORAGE_KEY) === 'es' ? 'es' : DEFAULT_LANG;
+    }
+
+    function getTranslation(lang, key) {
+        const dict = window.CIGSA_TRANSLATIONS;
+        if (!dict) return null;
+        if (lang === 'en') return dict.en?.[key] ?? null;
+        if (lang === 'es') return dict.es?.[key] ?? null;
+        return null;
     }
 
     function cacheOriginal(el) {
@@ -38,15 +44,15 @@
         if (!key) return;
         cacheOriginal(el);
         const attr = el.dataset.i18nAttr;
-        const enText = window.CIGSA_TRANSLATIONS?.en?.[key];
+        const text = getTranslation(lang, key);
 
         if (lang === 'en') {
-            if (!enText) return;
-            if (attr) el.setAttribute(attr, enText);
-            else if (el.dataset.i18nHtml !== undefined || /<[a-z][\s\S]*>/i.test(enText)) el.innerHTML = enText;
-            else el.textContent = enText;
+            if (!text) return;
+            if (attr) el.setAttribute(attr, text);
+            else if (el.dataset.i18nHtml !== undefined || /<[a-z][\s\S]*>/i.test(text)) el.innerHTML = text;
+            else el.textContent = text;
         } else {
-            const value = el.dataset.i18nDefault;
+            const value = text || el.dataset.i18nDefault;
             if (attr) el.setAttribute(attr, value);
             else if (el.dataset.i18nHtml !== undefined) el.innerHTML = value;
             else el.textContent = value;
@@ -182,33 +188,145 @@
             { selector: '.page-hero .section-tag', key: 'proyecto.hero.tag' },
             { selector: '.page-hero h1', key: 'proyecto.hero.title' },
             { selector: '.page-hero .hero-subtitle', key: 'proyecto.hero.subtitle', html: true },
-            { selector: '.page-hero .btn-primary', key: 'proyecto.hero.btn1' },
-            { selector: '.page-hero .btn-outline', key: 'proyecto.hero.btn2' },
+            { selector: '.page-hero .btn-primary', key: 'common.requestInvestor' },
+            { selector: '.page-hero .btn-outline', key: 'common.backOverview' },
+            { selector: '.page-main .section > .container > h2', key: 'proyecto.section.title' },
+            { selector: '.page-main .section > .container > .section-desc', key: 'proyecto.section.desc' },
+            { selector: '.infra-card:nth-child(1) h3', key: 'proyecto.infra1.title' },
+            { selector: '.infra-card:nth-child(1) p', key: 'proyecto.infra1.p' },
+            { selector: '.infra-card:nth-child(1) .infra-detail', key: 'proyecto.infra1.d' },
+            { selector: '.infra-card:nth-child(2) h3', key: 'proyecto.infra2.title' },
+            { selector: '.infra-card:nth-child(2) p', key: 'proyecto.infra2.p' },
+            { selector: '.infra-card:nth-child(3) h3', key: 'proyecto.infra3.title' },
+            { selector: '.infra-card:nth-child(3) p', key: 'proyecto.infra3.p' },
+            { selector: '.infra-card:nth-child(4) h3', key: 'proyecto.infra4.title' },
+            { selector: '.infra-card:nth-child(4) p', key: 'proyecto.infra4.p' },
+            { selector: '.port-caption', key: 'proyecto.port.caption' },
+            { selector: '[data-i18n="proyecto.fast.tag"]', key: 'proyecto.fast.tag' },
+            { selector: '[data-i18n="proyecto.fast.title"]', key: 'proyecto.fast.title' },
+            { selector: '[data-i18n="proyecto.fast.desc"]', key: 'proyecto.fast.desc' },
+            { selector: '.track-card:nth-child(1) .card-meta', key: 'proyecto.track1.meta' },
+            { selector: '.track-card:nth-child(1) h3', key: 'proyecto.track1.title' },
+            { selector: '.track-card:nth-child(1) p', key: 'proyecto.track1.p' },
+            { selector: '.track-card:nth-child(2) .card-meta', key: 'proyecto.track2.meta' },
+            { selector: '.track-card:nth-child(2) h3', key: 'proyecto.track2.title' },
+            { selector: '.track-card:nth-child(2) p', key: 'proyecto.track2.p' },
+            { selector: '.track-card:nth-child(3) .card-meta', key: 'proyecto.track3.meta' },
+            { selector: '.track-card:nth-child(3) h3', key: 'proyecto.track3.title' },
+            { selector: '.track-card:nth-child(3) p', key: 'proyecto.track3.p' },
+            { selector: '.benchmark h3', key: 'proyecto.bench.title' },
         ],
         inversion: [
             { selector: '.page-hero .section-tag', key: 'inversion.hero.tag' },
             { selector: '.page-hero h1', key: 'inversion.hero.title' },
             { selector: '.page-hero .hero-subtitle', key: 'inversion.hero.subtitle' },
+            { selector: '.page-hero .btn-primary', key: 'inversion.hero.btn1' },
+            { selector: '.page-hero .btn-outline', key: 'inversion.hero.btn2' },
+            { selector: '.section-dark h2', key: 'inversion.section.title' },
+            { selector: '.section-dark > .container > .section-desc', key: 'inversion.section.desc' },
+            { selector: '.bot-model .bot-title', key: 'inversion.bot.title' },
+            { selector: '.bot-step:nth-child(1) h4', key: 'inversion.bot1.title' },
+            { selector: '.bot-step:nth-child(1) p', key: 'inversion.bot1.p' },
+            { selector: '.bot-step:nth-child(2) h4', key: 'inversion.bot2.title' },
+            { selector: '.bot-step:nth-child(2) p', key: 'inversion.bot2.p' },
+            { selector: '.bot-step:nth-child(3) h4', key: 'inversion.bot3.title' },
+            { selector: '.bot-step:nth-child(3) p', key: 'inversion.bot3.p' },
+            { selector: '.coingt-section h3', key: 'inversion.coingt.title' },
+            { selector: '.coingt-desc', key: 'inversion.coingt.desc' },
+            { selector: '.coingt-card:nth-child(1) .coingt-label', key: 'inversion.coingt1.label' },
+            { selector: '.coingt-card:nth-child(1) .coingt-detail', key: 'inversion.coingt1.d' },
+            { selector: '.coingt-card:nth-child(2) .coingt-label', key: 'inversion.coingt2.label' },
+            { selector: '.coingt-card:nth-child(2) .coingt-detail', key: 'inversion.coingt2.d' },
+            { selector: '.coingt-card:nth-child(3) .coingt-label', key: 'inversion.coingt3.label' },
+            { selector: '.coingt-card:nth-child(3) .coingt-detail', key: 'inversion.coingt3.d' },
+            { selector: '[data-i18n="inversion.eco.title"]', key: 'inversion.eco.title' },
+            { selector: '[data-i18n="inversion.eco.desc"]', key: 'inversion.eco.desc' },
+            { selector: '.ecosystem-card:nth-child(1) span', key: 'inversion.eco1' },
+            { selector: '.ecosystem-card:nth-child(2) span', key: 'inversion.eco2' },
+            { selector: '.ecosystem-card:nth-child(3) span', key: 'inversion.eco3' },
+            { selector: '.data-room h3', key: 'inversion.dataroom.title' },
+            { selector: '.data-room p', key: 'inversion.dataroom.desc' },
+            { selector: '.data-room .btn-primary', key: 'common.requestAccess' },
         ],
         gobernanza: [
             { selector: '.page-hero .section-tag', key: 'gobernanza.hero.tag' },
             { selector: '.page-hero h1', key: 'gobernanza.hero.title' },
             { selector: '.page-hero .hero-subtitle', key: 'gobernanza.hero.subtitle' },
+            { selector: '.page-hero .btn-primary', key: 'gobernanza.hero.btn1' },
+            { selector: '.page-hero .btn-outline', key: 'gobernanza.hero.btn2' },
+            { selector: '.page-main .section h2', key: 'gobernanza.section.title' },
+            { selector: '.page-main .section > .container > .section-desc', key: 'gobernanza.section.desc' },
+            { selector: '.governance-highlight .gov-label', key: 'gobernanza.gov.label' },
+            { selector: '.governance-highlight p', key: 'gobernanza.gov.p' },
+            { selector: '.gov-column:nth-child(1) h3', key: 'gobernanza.col1.title' },
+            { selector: '.gov-column:nth-child(1) .gov-list li:nth-child(1)', key: 'gobernanza.col1.li1' },
+            { selector: '.gov-column:nth-child(1) .gov-list li:nth-child(2)', key: 'gobernanza.col1.li2' },
+            { selector: '.gov-column:nth-child(1) .gov-list li:nth-child(3)', key: 'gobernanza.col1.li3' },
+            { selector: '.gov-column:nth-child(1) .gov-list li:nth-child(4)', key: 'gobernanza.col1.li4' },
+            { selector: '.gov-column:nth-child(2) h3', key: 'gobernanza.col2.title' },
+            { selector: '.gov-column:nth-child(2) .gov-list li:nth-child(1)', key: 'gobernanza.col2.li1' },
+            { selector: '.gov-column:nth-child(2) .gov-list li:nth-child(2)', key: 'gobernanza.col2.li2' },
+            { selector: '.gov-column:nth-child(2) .gov-list li:nth-child(3)', key: 'gobernanza.col2.li3' },
+            { selector: '.gov-column:nth-child(2) .gov-list li:nth-child(4)', key: 'gobernanza.col2.li4' },
         ],
         innovacion: [
             { selector: '.page-hero .section-tag', key: 'innovacion.hero.tag' },
             { selector: '.page-hero h1', key: 'innovacion.hero.title' },
             { selector: '.page-hero .hero-subtitle', key: 'innovacion.hero.subtitle' },
+            { selector: '.page-hero .btn-primary', key: 'innovacion.hero.btn1' },
+            { selector: '.page-hero .btn-outline', key: 'innovacion.hero.btn2' },
+            { selector: '.phase-badge', key: 'innovacion.phase' },
+            { selector: '.section-dark h2', key: 'innovacion.section.title' },
+            { selector: '.section-dark .section-desc', key: 'innovacion.section.desc' },
+            { selector: '.agent-card:nth-child(1) h3', key: 'innovacion.a1.title' },
+            { selector: '.agent-card:nth-child(1) p', key: 'innovacion.a1.p' },
+            { selector: '.agent-card:nth-child(2) h3', key: 'innovacion.a2.title' },
+            { selector: '.agent-card:nth-child(2) p', key: 'innovacion.a2.p' },
+            { selector: '.agent-card:nth-child(3) h3', key: 'innovacion.a3.title' },
+            { selector: '.agent-card:nth-child(3) p', key: 'innovacion.a3.p' },
+            { selector: '.agent-card:nth-child(4) h3', key: 'innovacion.a4.title' },
+            { selector: '.agent-card:nth-child(4) p', key: 'innovacion.a4.p' },
+            { selector: '.agent-card:nth-child(5) h3', key: 'innovacion.a5.title' },
+            { selector: '.agent-card:nth-child(5) p', key: 'innovacion.a5.p' },
         ],
         prensa: [
             { selector: '.page-hero .section-tag', key: 'prensa.hero.tag' },
             { selector: '.page-hero h1', key: 'prensa.hero.title' },
             { selector: '.page-hero .hero-subtitle', key: 'prensa.hero.subtitle' },
+            { selector: '.page-hero .btn-primary', key: 'prensa.hero.btn1' },
+            { selector: '.page-hero .btn-outline', key: 'prensa.hero.btn2' },
+            { selector: '.page-main .section h2', key: 'prensa.section.title' },
+            { selector: '.page-main .section > .container > .section-desc', key: 'prensa.section.desc' },
+            { selector: '.press-card:nth-child(1) .card-meta', key: 'prensa.c1.meta' },
+            { selector: '.press-card:nth-child(1) h3', key: 'prensa.c1.title' },
+            { selector: '.press-card:nth-child(1) p', key: 'prensa.c1.p' },
+            { selector: '.press-card:nth-child(1) .card-link', key: 'prensa.c1.link' },
+            { selector: '.press-card:nth-child(2) .card-meta', key: 'prensa.c2.meta' },
+            { selector: '.press-card:nth-child(2) h3', key: 'prensa.c2.title' },
+            { selector: '.press-card:nth-child(2) p', key: 'prensa.c2.p' },
+            { selector: '.press-card:nth-child(2) .card-link', key: 'prensa.c2.link' },
+            { selector: '.press-card:nth-child(3) .card-meta', key: 'prensa.c3.meta' },
+            { selector: '.press-card:nth-child(3) h3', key: 'prensa.c3.title' },
+            { selector: '.press-card:nth-child(3) p', key: 'prensa.c3.p' },
+            { selector: '.press-card:nth-child(3) .card-link', key: 'prensa.c3.link' },
         ],
         insights: [
             { selector: '.page-hero .section-tag', key: 'insights.hero.tag' },
             { selector: '.page-hero h1', key: 'insights.hero.title' },
             { selector: '.page-hero .hero-subtitle', key: 'insights.hero.subtitle' },
+            { selector: '.page-hero .btn-primary', key: 'insights.hero.btn1' },
+            { selector: '.page-hero .btn-outline', key: 'insights.hero.btn2' },
+            { selector: '.section-dark h2', key: 'insights.section.title' },
+            { selector: '.section-dark > .container > .section-desc', key: 'insights.section.desc' },
+            { selector: '.insight-card:nth-child(1) .card-meta', key: 'insights.c1.meta' },
+            { selector: '.insight-card:nth-child(1) h3', key: 'insights.c1.title' },
+            { selector: '.insight-card:nth-child(1) p', key: 'insights.c1.p' },
+            { selector: '.insight-card:nth-child(2) .card-meta', key: 'insights.c2.meta' },
+            { selector: '.insight-card:nth-child(2) h3', key: 'insights.c2.title' },
+            { selector: '.insight-card:nth-child(2) p', key: 'insights.c2.p' },
+            { selector: '.insight-card:nth-child(3) .card-meta', key: 'insights.c3.meta' },
+            { selector: '.insight-card:nth-child(3) h3', key: 'insights.c3.title' },
+            { selector: '.insight-card:nth-child(3) p', key: 'insights.c3.p' },
         ],
         'equipo-contacto': [
             { selector: '.page-hero .section-tag', key: 'equipo.hero.tag' },
@@ -233,6 +351,41 @@
             { selector: '#contactForm textarea', key: 'equipo.form.msgPh', attr: 'placeholder' },
             { selector: '#contactForm .btn-submit', key: 'equipo.form.submit' },
             { selector: '#contactForm .checkbox-label span', key: 'equipo.form.privacy' },
+            { selector: '#contactForm option:nth-child(1)', key: 'equipo.form.opt0' },
+            { selector: '#contactForm option:nth-child(2)', key: 'equipo.form.opt1' },
+            { selector: '#contactForm option:nth-child(3)', key: 'equipo.form.opt2' },
+            { selector: '#contactForm option:nth-child(4)', key: 'equipo.form.opt3' },
+            { selector: '#contactForm option:nth-child(5)', key: 'equipo.form.opt4' },
+            { selector: '#contactForm option:nth-child(6)', key: 'equipo.form.opt5' },
+            { selector: '.leader-card:nth-child(1) .leader-role', key: 'equipo.lead1.role' },
+            { selector: '.leader-card:nth-child(1) .leader-title', key: 'equipo.lead1.title' },
+            { selector: '.leader-card:nth-child(1) p', key: 'equipo.lead1.p' },
+            { selector: '.leader-card:nth-child(2) .leader-role', key: 'equipo.lead2.role' },
+            { selector: '.leader-card:nth-child(2) .leader-title', key: 'equipo.lead2.title' },
+            { selector: '.leader-card:nth-child(2) p', key: 'equipo.lead2.p' },
+            { selector: '.leader-card:nth-child(3) .leader-role', key: 'equipo.lead3.role' },
+            { selector: '.leader-card:nth-child(3) .leader-title', key: 'equipo.lead3.title' },
+            { selector: '.leader-card:nth-child(3) p', key: 'equipo.lead3.p' },
+            { selector: '.leader-card:nth-child(4) .leader-role', key: 'equipo.lead4.role' },
+            { selector: '.leader-card:nth-child(4) .leader-title', key: 'equipo.lead4.title' },
+            { selector: '.leader-card:nth-child(4) p', key: 'equipo.lead4.p' },
+            { selector: '.leader-card:nth-child(5) .leader-role', key: 'equipo.lead5.role' },
+            { selector: '.leader-card:nth-child(5) .leader-title', key: 'equipo.lead5.title' },
+            { selector: '.leader-card:nth-child(5) p', key: 'equipo.lead5.p' },
+            { selector: '.ecosystem-card:nth-child(1) span', key: 'equipo.eco.cig' },
+            { selector: '.ecosystem-card:nth-child(2) span', key: 'equipo.eco.cigsa' },
+            { selector: '.ecosystem-card:nth-child(3) span', key: 'equipo.eco.odepal' },
+            { selector: '.ecosystem-card:nth-child(4) span', key: 'equipo.eco.godes' },
+            { selector: '.ecosystem-card:nth-child(5) span', key: 'equipo.eco.coingt' },
+            { selector: '.team-card:nth-child(1) .card-meta', key: 'equipo.team1.meta' },
+            { selector: '.team-card:nth-child(1) h3', key: 'equipo.team1.title' },
+            { selector: '.team-card:nth-child(1) .team-detail', key: 'equipo.team1.p' },
+            { selector: '.team-card:nth-child(2) .card-meta', key: 'equipo.team2.meta' },
+            { selector: '.team-card:nth-child(2) h3', key: 'equipo.team2.title' },
+            { selector: '.team-card:nth-child(2) .team-detail', key: 'equipo.team2.p' },
+            { selector: '.team-card:nth-child(3) .card-meta', key: 'equipo.team3.meta' },
+            { selector: '.team-card:nth-child(3) h3', key: 'equipo.team3.title' },
+            { selector: '.team-card:nth-child(3) .team-detail', key: 'equipo.team3.p' },
         ],
     };
 
@@ -295,6 +448,7 @@
         document.querySelectorAll('[data-i18n]').forEach(cacheOriginal);
         setLanguage(detectDefaultLang());
         initLangSwitcher();
+        document.documentElement.classList.add('i18n-ready');
     }
 
     window.CIGSA_I18N = { setLanguage, detectDefaultLang, getPageId };
