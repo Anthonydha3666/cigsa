@@ -34,7 +34,7 @@ function resolveAssetUrl(relativePath) {
 }
 
 function initGithubPagesAssets() {
-    document.querySelectorAll('img[src*="images/"]').forEach((img) => {
+    document.querySelectorAll('img[src^="./"]').forEach((img) => {
         const raw = img.getAttribute('src');
         if (!raw) return;
         img.src = resolveAssetUrl(raw);
