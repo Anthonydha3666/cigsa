@@ -1,9 +1,8 @@
 window.CIGSA_TRANSLATIONS = {
     es: {
         'portal.langAria': 'Idioma',
-        'portal.tag': 'AUDITORÍA DIGITAL 2026 · MÉTODO STUDIO',
-        'portal.title': 'Propuesta de arquitectura digital',
-        'portal.lead': 'Un solo sistema coherente: audiencias y funciones claramente diferenciadas. Elija la capa según su perfil — sin fragmentar la marca CIGSA.',
+        'portal.title': 'Ecosistema Digital CIGSA',
+        'portal.lead': 'Tres entornos especializados conectados bajo una misma visión. Explore el área que mejor se adapte a sus necesidades, dentro de una experiencia CIGSA unificada.',
         'portal.cigsa.title': 'PLATAFORMA',
         'portal.cigsa.desc': 'El proyecto como plataforma integrada — Global Integrated Interoceanic Infrastructure Platform. Sitio institucional para inversores, medios y due diligence.',
         'portal.cigsa.li1': 'Corredor multimodal 372 km · puertos · ferrocarril · energía',
@@ -23,7 +22,7 @@ window.CIGSA_TRANSLATIONS = {
         'portal.coingt.li2': 'Estructura financiera y modelo BOT',
         'portal.coingt.li3': 'Materiales para inversores · dividendos 7,6612%',
         'portal.coingt.cta': 'Ir a coingt.com →',
-        'portal.footnote': 'Lógica del modelo: integrar iniciativas existentes · escalar internacionalmente · Auditoría Digital Integral CIGSA 2026',
+        'portal.footnote': 'Una visión · tres entornos · experiencia CIGSA unificada',
         'portal.close': 'Cerrar',
     },
     en: {
@@ -137,9 +136,8 @@ window.CIGSA_TRANSLATIONS = {
         'index.table.r6c4': 'State',
 
         'portal.langAria': 'Language',
-        'portal.tag': 'DIGITAL AUDIT 2026 · MÉTODO STUDIO',
-        'portal.title': 'Digital Architecture Proposal',
-        'portal.lead': 'One coherent system: clearly differentiated audiences and functions. Choose the layer that matches your profile — without fragmenting the CIGSA brand.',
+        'portal.title': 'CIGSA Digital Ecosystem',
+        'portal.lead': 'Three specialised environments connected under one vision. Explore the area that best fits your needs while staying within a unified CIGSA experience.',
         'portal.cigsa.title': 'PLATFORM',
         'portal.cigsa.desc': 'The project as a single integrated platform — Global Integrated Interoceanic Infrastructure Platform. Institutional site for investors, media and due diligence.',
         'portal.cigsa.li1': '372 km multimodal corridor · ports · rail · energy',
@@ -159,7 +157,7 @@ window.CIGSA_TRANSLATIONS = {
         'portal.coingt.li2': 'Financial structure & BOT model',
         'portal.coingt.li3': 'Materials for investors · 7.6612% dividends',
         'portal.coingt.cta': 'Go to coingt.com →',
-        'portal.footnote': 'Model logic: integrate existing initiatives · scale internationally · CIGSA Comprehensive Digital Audit 2026',
+        'portal.footnote': 'One vision · three environments · unified CIGSA experience',
         'portal.close': 'Close',
 
         'proyecto.meta.title': 'Project — CIGSA',

@@ -2330,43 +2330,67 @@ td.highlight {
         font-size: 48px;
     }
 
-    .marine-portal__grid {
+    .marine-portal__grid,
+    .ecosystem-home__grid {
         grid-template-columns: 1fr;
-    }
-
-    .marine-portal__panel {
-        padding: 28px 20px 32px;
-        max-height: 92vh;
-        overflow-y: auto;
     }
 }
 
 /* ══════════════════════════════════════
-   PORTAL MARINO — selector de plataforma
+   ECOSYSTEM HOME — landing (no popup)
    ══════════════════════════════════════ */
-body.portal-open {
-    overflow: hidden;
-}
-
-.marine-portal {
-    position: fixed;
-    inset: 0;
-    z-index: 12000;
+.marine-portal--page,
+.ecosystem-home {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: max(16px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 48px 16px 32px;
     background: radial-gradient(ellipse 120% 80% at 50% 100%, rgba(8, 40, 62, 0.95) 0%, rgba(4, 10, 18, 0.97) 55%, rgba(2, 6, 12, 0.99) 100%);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.55s ease, visibility 0.55s ease;
 }
 
-.marine-portal.is-closing,
-.marine-portal.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+body.ecosystem-landing {
+    background: var(--bg-primary, #040a12);
+}
+
+.ecosystem-home__top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.ecosystem-home__lang {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(201, 162, 39, 0.25);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.ecosystem-home__title {
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #e8f4fc, #c9a227);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+}
+
+.footer-ecosystem {
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(4, 10, 18, 0.95);
+}
+
+.footer-ecosystem .footer-content {
+    text-align: center;
+}
+
+.footer-ecosystem .footer-copy {
+    margin: 0;
 }
 
 .marine-portal__ocean {
@@ -2453,98 +2477,15 @@ body.portal-open {
     to { transform: rotate(360deg); }
 }
 
-.marine-portal__panel {
+.ecosystem-home__content {
     position: relative;
     z-index: 2;
-    width: min(1100px, 100%);
-    max-height: min(94vh, 900px);
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: clamp(20px, 4vw, 40px) clamp(16px, 3vw, 36px) clamp(24px, 4vw, 36px);
-    border-radius: 20px;
-    border: 1px solid rgba(201, 162, 39, 0.25);
-    background: linear-gradient(165deg, rgba(12, 28, 42, 0.92) 0%, rgba(6, 14, 22, 0.96) 100%);
-    box-shadow:
-        0 0 0 1px rgba(80, 160, 200, 0.08) inset,
-        0 24px 80px rgba(0, 0, 0, 0.55),
-        0 0 60px rgba(20, 100, 140, 0.15);
-    transform: translateY(24px) scale(0.97);
-    opacity: 0;
-    animation: portalPanelIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-@keyframes portalPanelIn {
-    to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-}
-
-.marine-portal.is-hidden .marine-portal__panel {
-    animation: none;
-}
-
-.marine-portal__toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.marine-portal__lang {
-    padding: 6px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(201, 162, 39, 0.25);
-    background: rgba(0, 0, 0, 0.25);
-}
-
-.marine-portal__lang .lang-btn {
-    font-size: 12px;
-    padding: 6px 10px;
-    min-width: 36px;
-    min-height: 36px;
-}
-
-.marine-portal__lang .lang-btn.active {
-    color: var(--accent, #c9a227);
-    font-weight: 700;
-}
-
-.marine-portal__close {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary, #f0f4f8);
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer;
-    transition: background 0.25s, border-color 0.25s, transform 0.25s;
-}
-
-.marine-portal__close:hover {
-    background: rgba(201, 162, 39, 0.2);
-    border-color: var(--gold, #c9a227);
-    transform: rotate(90deg);
-}
-
-.marine-portal__panel .section-tag {
-    margin-bottom: 8px;
-}
-
-.marine-portal__panel h2 {
-    font-size: clamp(1.5rem, 4vw, 2.1rem);
-    margin-bottom: 12px;
-    background: linear-gradient(90deg, #e8f4fc, #c9a227);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
+.ecosystem-home__lead,
 .marine-portal__lead {
     color: rgba(220, 230, 240, 0.75);
     max-width: 720px;
@@ -2553,6 +2494,7 @@ body.portal-open {
     font-size: 0.95rem;
 }
 
+.ecosystem-home__grid,
 .marine-portal__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2684,17 +2626,7 @@ body.portal-open {
     color: #7dd3fc;
 }
 
-.portal-card__hit {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    z-index: 2;
-}
-
+.ecosystem-home__footnote,
 .marine-portal__footnote {
     margin-top: 24px;
     text-align: center;
@@ -2715,15 +2647,10 @@ body.portal-open {
 }
 
 @media (max-width: 600px) {
-    .marine-portal {
-        align-items: flex-end;
-        padding-bottom: max(8px, env(safe-area-inset-bottom));
-    }
-
-    .marine-portal__panel {
-        max-height: 96vh;
-        border-radius: 16px 16px 12px 12px;
-        padding-top: 18px;
+    .ecosystem-home,
+    .marine-portal--page {
+        align-items: flex-start;
+        padding: 32px 12px 24px;
     }
 
     .marine-portal__compass {
@@ -2737,14 +2664,11 @@ body.portal-open {
         height: 14vh;
     }
 
-    .marine-portal__toolbar {
-        margin-bottom: 14px;
-    }
-
-    .marine-portal__panel h2 {
+    .ecosystem-home__title {
         font-size: 1.35rem;
     }
 
+    .ecosystem-home__lead,
     .marine-portal__lead {
         font-size: 0.88rem;
         margin-bottom: 20px;
@@ -2762,6 +2686,7 @@ body.portal-open {
         font-size: 1.6rem;
     }
 
+    .ecosystem-home__footnote,
     .marine-portal__footnote {
         font-size: 0.7rem;
         line-height: 1.5;
@@ -2769,18 +2694,6 @@ body.portal-open {
     }
 }
 
-@media (max-width: 380px) {
-    .marine-portal__lang .lang-btn {
-        min-width: 32px;
-        padding: 6px 8px;
-        font-size: 11px;
-    }
-
-    .marine-portal__close {
-        width: 40px;
-        height: 40px;
-    }
-}
 
 @media (min-width: 901px) and (max-width: 1100px) {
     .marine-portal__grid {

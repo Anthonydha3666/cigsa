@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initFloatingParticles();
     initShimmerTitles();
     initFooterStagger();
-    initMarinePortal();
 });
 
 /** Rutas correctas en GitHub Pages (usuario.github.io/nombre-repo/) */
@@ -235,7 +234,7 @@ function initForm() {
             setTimeout(() => {
                 btn.textContent = '✓ Inquiry Submitted';
                 btn.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
-                
+
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.background = '';
@@ -460,53 +459,6 @@ function initShimmerTitles() {
 /* ══════════════════════════════════════
    FOOTER LINK STAGGER
    ══════════════════════════════════════ */
-/* ══════════════════════════════════════
-   PORTAL MARINO — 3 plataformas del ecosistema
-   ══════════════════════════════════════ */
-function initMarinePortal() {
-    const portal = document.getElementById('marinePortal');
-    if (!portal) return;
-
-    const closeBtn = document.getElementById('portalClose');
-    const stayBtn = portal.querySelector('[data-portal-action="stay"]');
-
-    function dismissPortal() {
-        portal.classList.add('is-closing');
-        document.body.classList.remove('portal-open');
-        portal.setAttribute('aria-hidden', 'true');
-
-        const onEnd = () => {
-            portal.classList.remove('is-closing');
-            portal.classList.add('is-hidden');
-            portal.removeEventListener('transitionend', onEnd);
-        };
-        portal.addEventListener('transitionend', onEnd);
-        setTimeout(onEnd, 600);
-    }
-
-    function openPortal() {
-        portal.classList.remove('is-hidden', 'is-closing');
-        portal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('portal-open');
-        if (closeBtn) closeBtn.focus();
-    }
-
-    openPortal();
-
-    closeBtn?.addEventListener('click', dismissPortal);
-    stayBtn?.addEventListener('click', dismissPortal);
-
-    portal.addEventListener('click', (e) => {
-        if (e.target === portal) dismissPortal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !portal.classList.contains('is-hidden')) {
-            dismissPortal();
-        }
-    });
-}
-
 function initFooterStagger() {
     const footerItems = document.querySelectorAll('.footer-links-col li');
     if (!footerItems.length) return;
