@@ -2565,13 +2565,6 @@ body.ecosystem-landing {
     font-weight: 600;
 }
 
-.portal-card__icon {
-    font-size: 2rem;
-    line-height: 1;
-    filter: drop-shadow(0 0 12px rgba(80, 180, 220, 0.4));
-}
-
-.portal-card__title {
     margin: 0;
     font-size: 1.35rem;
     font-weight: 700;
@@ -2678,15 +2671,6 @@ body.ecosystem-landing {
         font-size: 1.2rem;
     }
 
-    .portal-card p {
-        font-size: 0.84rem;
-    }
-
-    .portal-card__icon {
-        font-size: 1.6rem;
-    }
-
-    .ecosystem-home__footnote,
     .marine-portal__footnote {
         font-size: 0.7rem;
         line-height: 1.5;
