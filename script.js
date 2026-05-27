@@ -30,8 +30,7 @@ function resolveAssetUrl(relativePath) {
     const clean = relativePath.replace(/^\.\//, '');
     const ghBase = getGithubPagesBase();
     if (ghBase) return ghBase + clean;
-    if (location.protocol === 'file:') return './' + clean;
-    return clean;
+    return './' + clean;
 }
 
 function initGithubPagesAssets() {
