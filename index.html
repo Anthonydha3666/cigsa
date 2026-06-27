@@ -3,63 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIGSA — Global Integrated Interoceanic Infastructure Platform</title>
-    <meta name="description" content="CIGSA - Global Integrated Interoceanic Infastructure Platform — The Platform, Territory and Capital. Three specialised environments under one vision.">
+    <title>CIGSA — Global Integrated Interoceanic Infrastructure Platform</title>
+    <meta name="description" content="CIGSA — Global Integrated Interoceanic Infrastructure Platform. A unified digital ecosystem connecting infrastructure, territorial development and institutional capital across Guatemala.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="home-page ecosystem-landing" data-page="index">
     <main class="ecosystem-home marine-portal marine-portal--page" id="ecosystem-home">
-        <div class="marine-portal__ocean" aria-hidden="true">
+        <div class="ecosystem-bg marine-portal__ocean" aria-hidden="true">
+            <div class="ecosystem-bg__night"></div>
+            <div class="ecosystem-bg__satellite">
+                <img src="./mapa.png" alt="" loading="eager">
+            </div>
+            <div class="ecosystem-bg__map">
+                <img src="./mapa.png" alt="" loading="eager">
+            </div>
+            <div class="ecosystem-bg__grid-lines"></div>
+            <svg class="ecosystem-bg__routes" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <path class="trade-route trade-route--atlantic" d="M 80 320 C 280 380, 420 440, 620 490 S 900 520, 1100 380" />
+                <path class="trade-route trade-route--pacific" d="M 1360 260 C 1180 340, 980 420, 780 470 S 520 510, 320 600" />
+                <path class="trade-route trade-route--corridor" d="M 620 490 C 680 470, 720 455, 780 470" />
+                <path class="trade-route trade-route--north" d="M 720 455 C 740 320, 820 180, 980 120" />
+                <path class="trade-route trade-route--south" d="M 720 455 C 700 580, 660 720, 580 820" />
+                <circle class="trade-hub trade-hub--primary" cx="720" cy="468" r="5" />
+                <circle class="trade-hub trade-hub--pulse" cx="720" cy="468" r="14" />
+            </svg>
+            <div class="ecosystem-bg__particles" aria-hidden="true"></div>
             <div class="marine-wave marine-wave--1"></div>
             <div class="marine-wave marine-wave--2"></div>
             <div class="marine-wave marine-wave--3"></div>
-            <div class="marine-portal__bubbles">
-                <span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <div class="marine-portal__compass" aria-hidden="true">✦</div>
+            <div class="ecosystem-bg__vignette"></div>
         </div>
-        <div class="ecosystem-home__content container">
-            <h1 id="portal-title" class="ecosystem-home__title">CIGSA Global Integrated Interoceanic Infastructure Platform</h1>
-            <p class="ecosystem-home__lead">Three specialised environments connected under one vision. Explore the area that best fits your needs while staying within a unified experience.</p>
-            <div class="ecosystem-home__grid marine-portal__grid">
+        <section class="ecosystem-hero" id="hero" aria-labelledby="portal-title">
+            <div class="ecosystem-hero__inner container">
+                <p class="ecosystem-hero__brand">CIGSA</p>
+                <h1 id="portal-title" class="ecosystem-hero__title">
+                    <span class="ecosystem-hero__line">Global Integrated</span>
+                    <span class="ecosystem-hero__line ecosystem-hero__line--emphasis">Interoceanic</span>
+                    <span class="ecosystem-hero__line ecosystem-hero__line--gold">Infrastructure Platform</span>
+                </h1>
+                <p class="ecosystem-hero__tagline">Building the next logistics corridor connecting<br>the Atlantic and Pacific through Guatemala.</p>
+                <p class="ecosystem-hero__vision">
+                    <span>Three connected ecosystems.</span>
+                    <span>One integrated vision.</span>
+                </p>
+                <a href="#portals" class="ecosystem-hero__scroll" aria-label="Scroll to portals">
+                    <span class="ecosystem-hero__scroll-line" aria-hidden="true"></span>
+                    <span class="ecosystem-hero__scroll-icon" aria-hidden="true">↓</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="ecosystem-portals" id="portals" aria-label="CIGSA portals">
+            <div class="ecosystem-portals__inner container">
+            <p class="ecosystem-home__lead">A unified digital ecosystem connecting infrastructure, territorial development and institutional capital.</p>
+            <dl class="ecosystem-portals__stats">
+                <div class="ecosystem-portals__stat">
+                    <dt class="ecosystem-portals__stat-value">372 km</dt>
+                    <dd class="ecosystem-portals__stat-label">Corridor</dd>
+                </div>
+                <div class="ecosystem-portals__stat">
+                    <dt class="ecosystem-portals__stat-value">2</dt>
+                    <dd class="ecosystem-portals__stat-label">Oceans</dd>
+                </div>
+                <div class="ecosystem-portals__stat">
+                    <dt class="ecosystem-portals__stat-value">5</dt>
+                    <dd class="ecosystem-portals__stat-label">Logistics Hubs</dd>
+                </div>
+                <div class="ecosystem-portals__stat">
+                    <dt class="ecosystem-portals__stat-value">1</dt>
+                    <dd class="ecosystem-portals__stat-label">Integrated Platform</dd>
+                </div>
+            </dl>
+            <div class="ecosystem-home__grid marine-portal__grid portal-panels" data-portal-panels>
                 <a href="platform.html" class="portal-card portal-card--featured" data-portal-card>
+                    <div class="portal-card__media" aria-hidden="true">
+                        <img src="./barc01.jpeg" alt="" loading="lazy">
+                    </div>
+                    <div class="portal-card__overlay" aria-hidden="true"></div>
+                    <div class="portal-card__content">
                     <h2 class="portal-card__title">THE PLATFORM</h2>
-                    <p class="portal-card__intro">The project as a single integrated platform — Global Integrated Interoceanic Infrastructure Platform. Institutional site for investors, media and due diligence.</p>
-                    <ul class="portal-card__list">
-                        <li>372 km multimodal corridor · ports · rail · energy</li>
-                        <li>Project, investment, governance, innovation &amp; press</li>
-                        <li>Unified narrative — credibility over fragmentation</li>
+                    <p class="portal-card__kicker">Global Infrastructure</p>
+                    <p class="portal-card__metric">372 km Interoceanic Corridor</p>
+                    <ul class="portal-card__list portal-card__list--tags">
+                        <li>Ports</li>
+                        <li>Rail</li>
+                        <li>Energy</li>
+                        <li>Logistics</li>
+                        <li>Industrial Parks</li>
                     </ul>
-                    <span class="portal-card__cta">Enter CIGSA platform</span>
+                    <span class="portal-card__cta">Enter Platform →</span>
+                    </div>
                 </a>
                 <a href="https://www.larutadelfuturo.com/" class="portal-card portal-card--ruta" target="_blank" rel="noopener noreferrer" data-portal-card>
+                    <div class="portal-card__media portal-card__media--territory" aria-hidden="true">
+                        <img src="./barc.jpeg" alt="" loading="lazy">
+                    </div>
+                    <div class="portal-card__overlay" aria-hidden="true"></div>
+                    <div class="portal-card__content">
                     <h2 class="portal-card__title">TERRITORY</h2>
-                    <p class="portal-card__intro">Local and legitimacy dimensions. Accessible from the main platform, with its own site for Guatemala-focused socialization.</p>
-                    <ul class="portal-card__list">
-                        <li>Communities &amp; territorial development</li>
-                        <li>Narrative and educational content</li>
-                        <li>La Ruta del Futuro — larutadelfuturo.com</li>
+                    <p class="portal-card__subtitle">The Guatemalan territorial dimension.</p>
+                    <ul class="portal-card__list portal-card__list--tags">
+                        <li>Communities</li>
+                        <li>Education</li>
+                        <li>Development</li>
+                        <li>Culture</li>
                     </ul>
-                    <span class="portal-card__cta portal-card__cta--external">Go to larutadelfuturo.com →</span>
+                    <span class="portal-card__cta portal-card__cta--external">Explore Territory →</span>
+                    </div>
                 </a>
                 <a href="https://coingt.com/index.html" class="portal-card portal-card--coingt" target="_blank" rel="noopener noreferrer" data-portal-card>
+                    <div class="portal-card__media portal-card__media--capital" aria-hidden="true">
+                        <img src="./mapa.png" alt="" loading="lazy">
+                    </div>
+                    <div class="portal-card__overlay" aria-hidden="true"></div>
+                    <div class="portal-card__content">
                     <h2 class="portal-card__title">CAPITAL</h2>
-                    <p class="portal-card__intro">The full financial dimension of the project. COINGT as a regulated instrument (CNAD El Salvador), not a generic cryptocurrency narrative.</p>
-                    <ul class="portal-card__list">
-                        <li>International institutional investment</li>
-                        <li>Financial structure &amp; BOT model</li>
-                        <li>Materials for investors · 7.6612% dividends</li>
+                    <p class="portal-card__subtitle">Institutional investment environment.</p>
+                    <ul class="portal-card__list portal-card__list--tags">
+                        <li>Investment Model</li>
+                        <li>BOT Structure</li>
+                        <li>COINGT</li>
+                        <li>Investor Relations</li>
                     </ul>
-                    <span class="portal-card__cta portal-card__cta--external">Go to coingt.com →</span>
+                    <span class="portal-card__cta portal-card__cta--external">Explore Capital →</span>
+                    </div>
                 </a>
             </div>
-            <p class="ecosystem-home__footnote">One vision · three environments · unified CIGSA experience</p>
-        </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer footer-ecosystem">
         <div class="container footer-content">
+            <p class="ecosystem-home__footnote ecosystem-home__footnote--footer">
+                <span class="ecosystem-home__footnote-item">Infrastructure</span>
+                <span class="ecosystem-home__footnote-item">Territory</span>
+                <span class="ecosystem-home__footnote-item">Capital</span>
+                <span class="ecosystem-home__footnote-tagline">Connected under one global strategy.</span>
+            </p>
             <p class="footer-copy">© 2026 CIGSA — Interoceanic Corridor of Guatemala.</p>
         </div>
     </footer>

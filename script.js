@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticTilt();
     initButtonRipple();
     initFloatingParticles();
+    initEcosystemLanding();
     initShimmerTitles();
     initFooterStagger();
 });
@@ -408,6 +409,70 @@ function initButtonRipple() {
             ripple.addEventListener('animationend', () => ripple.remove());
         });
     });
+}
+
+/* ══════════════════════════════════════
+   ECOSYSTEM LANDING — background & panels
+   ══════════════════════════════════════ */
+function initEcosystemLanding() {
+    const landing = document.getElementById('ecosystem-home');
+    if (!landing) return;
+
+    initEcosystemParticles(landing.querySelector('.ecosystem-bg__particles'));
+    initPortalPanels(landing.querySelector('[data-portal-panels]'));
+}
+
+function initEcosystemParticles(container) {
+    if (!container || container.childElementCount > 0) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const count = window.innerWidth < 768 ? 14 : 28;
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('span');
+        particle.className = 'ecosystem-particle';
+        const size = Math.random() * 2.5 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.setProperty('--dur', `${8 + Math.random() * 12}s`);
+        particle.style.setProperty('--delay', `${Math.random() * 10}s`);
+        particle.style.setProperty('--drift-x', `${-20 + Math.random() * 40}px`);
+        particle.style.setProperty('--drift-y', `${-30 + Math.random() * 60}px`);
+        container.appendChild(particle);
+    }
+}
+
+function initPortalPanels(grid) {
+    if (!grid) return;
+
+    const cards = grid.querySelectorAll('[data-portal-card]');
+    if (!cards.length) return;
+
+    const mq = window.matchMedia('(min-width: 1025px)');
+    const setActive = (activeCard) => {
+        if (!mq.matches) {
+            cards.forEach((card) => card.classList.remove('portal-card--active'));
+            grid.classList.remove('portal-panels--has-active');
+            return;
+        }
+        cards.forEach((card) => {
+            card.classList.toggle('portal-card--active', card === activeCard);
+        });
+        grid.classList.toggle('portal-panels--has-active', Boolean(activeCard));
+    };
+
+    cards.forEach((card) => {
+        card.addEventListener('mouseenter', () => setActive(card));
+        card.addEventListener('focusin', () => setActive(card));
+    });
+
+    grid.addEventListener('mouseleave', () => setActive(null));
+    grid.addEventListener('focusout', (event) => {
+        if (!grid.contains(event.relatedTarget)) setActive(null);
+    });
+
+    mq.addEventListener('change', () => setActive(null));
 }
 
 /* ══════════════════════════════════════
