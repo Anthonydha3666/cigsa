@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="home-page" data-page="index">
+<body class="home-page platform-page" data-page="platform">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo" title="CIGSA Digital Ecosystem">
@@ -16,13 +16,16 @@
             </a>
             <div class="nav-menu">
             <ul class="nav-links">
-                <li><a href="proyecto.html">PROJECT</a></li>
-                <li><a href="inversion.html">INVESTMENT</a></li>
-                <li><a href="gobernanza.html">GOVERNANCE</a></li>
-                <li><a href="innovacion.html">INNOVATION</a></li>
-                <li><a href="prensa.html">PRESS</a></li>
-                <li><a href="insights.html">INSIGHTS</a></li>
-                <li><a href="equipo-contacto.html">TEAM & CONTACT</a></li>
+                <li><a href="#opportunity">OPPORTUNITY</a></li>
+                <li><a href="#project">PROJECT</a></li>
+                <li><a href="#why-guatemala">GUATEMALA</a></li>
+                <li><a href="#corridor">CORRIDOR</a></li>
+                <li><a href="#economic-impact">IMPACT</a></li>
+                <li><a href="#investment">INVESTMENT</a></li>
+                <li><a href="#sustainability">SUSTAINABLE</a></li>
+                <li><a href="#corporate">CORPORATE</a></li>
+                <li><a href="#news">NEWS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
             <div class="nav-right">
                 <div class="lang-switch" aria-label="Language">
@@ -53,8 +56,8 @@
             <h1 data-i18n="platform.hero.title">Building the next global trade route for the 21st century </h1>
             <p class="hero-subtitle" data-i18n="platform.hero.subtitle">Connecting the Atlantic and Pacific through Guatemala with an integrated multimodal bi-oceanic logistics system</p>
             <div class="hero-buttons">
-                <a href="./proyecto.html" class="btn btn-primary" data-i18n="platform.hero.btnProject">Discover the Project</a>
-                <a href="./inversion.html" class="btn btn-outline" data-i18n="platform.hero.btnInvestment">Investment Opportunities</a>
+                <a href="#project" class="btn btn-primary" data-i18n="platform.hero.btnProject">Discover the Project</a>
+                <a href="#investment" class="btn btn-outline" data-i18n="platform.hero.btnInvestment">Investment Opportunities</a>
             </div>
         </div>
         <div class="hero-stats hero-stats--strip">
@@ -91,7 +94,7 @@
                 </span>
                 <div class="stat-body">
                     <span class="stat-value">2</span>
-                    <span class="stat-label" data-i18n="platform.stat.ports">Deep-water Ports 18 m Draft</span>
+                    <span class="stat-label" data-i18n="platform.stat.ports">Deep-water Ports 17.5 m Draft</span>
                 </div>
             </div>
             <div class="stat">
@@ -99,7 +102,7 @@
                     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20h24"/><path d="M8 20V14"/><path d="M24 20V14"/><path d="M6 14h20"/><path d="M10 11h2M20 11h2"/></svg>
                 </span>
                 <div class="stat-body">
-                    <span class="stat-value">375 km</span>
+                    <span class="stat-value">372 km</span>
                     <span class="stat-label" data-i18n="platform.stat.rail">Double-track Railway</span>
                 </div>
             </div>
@@ -168,168 +171,401 @@
         </div>
     </section>
 
-    <section class="section home-teaser" id="teaser-proyecto">
+    <main class="platform-main">
+
+    <!-- The Opportunity -->
+    <section class="section home-teaser platform-section" id="opportunity">
         <div class="container">
-            <p class="section-tag" data-i18n="platform.asset.tag">PHYSICAL ASSET</p>
-            <div class="home-teaser-header">
-                <h2 data-i18n="platform.asset.title">Multimodal on Guatemalan territory</h2>
-                <p class="section-desc" data-i18n="platform.asset.desc">An integrated system linking logistics, energy, and industry: a 372 km land corridor, two deep-water ports, double-track railway, and an energy corridor with pipelines and gas ducts.</p>
+            <p class="section-tag">THE OPPORTUNITY</p>
+            <div class="platform-opportunity">
+                <div class="platform-opportunity__copy">
+                    <h2>Global trade is changing. Infrastructure must evolve.</h2>
+             
+                </div>
+                <aside class="platform-infographic" aria-label="Global trade shift infographic">
+                    <div class="platform-infographic__node">
+                        <span class="platform-infographic__icon">↗</span>
+                        <strong>Global trade growth</strong>
+                        <span>Rising freight volumes across the Americas</span>
+                    </div>
+                    <div class="platform-infographic__arrow" aria-hidden="true">↓</div>
+                    <div class="platform-infographic__node platform-infographic__node--warn">
+                        <span class="platform-infographic__icon">⚠</span>
+                        <strong>Panama Canal saturation</strong>
+                        <span>Capacity constraints &amp; transit delays</span>
+                    </div>
+                    <div class="platform-infographic__arrow" aria-hidden="true">↓</div>
+                    <div class="platform-infographic__node">
+                        <span class="platform-infographic__icon">⇄</span>
+                        <strong>Alternative routes needed</strong>
+                        <span>Multimodal corridors &amp; new port capacity</span>
+                    </div>
+                    <div class="platform-infographic__arrow" aria-hidden="true">↓</div>
+                    <div class="platform-infographic__node platform-infographic__node--accent">
+                        <span class="platform-infographic__icon">◎</span>
+                        <strong>Guatemala strategic hub</strong>
+                        <span>Bi-oceanic gateway · CIGSA platform</span>
+                    </div>
+                </aside>
             </div>
-            <div class="home-pillars">
+        </div>
+    </section>
+
+    <!-- Project -->
+    <section class="section section-dark platform-section" id="project">
+        <div class="container">
+            <p class="section-tag">PROJECT</p>
+            <h2>One integrated logistics ecosystem</h2>
+            <p class="section-desc">CIGSA is not a single asset</p>
+            <div class="home-pillars platform-pillars--4">
                 <article class="home-pillar">
                     <div class="pillar-icon">⚓</div>
-                    <h3 data-i18n="platform.pillar.ports.title">Deep-water ports</h3>
-                    <p data-i18n="platform.pillar.ports.desc">San Luis (Pacific) and San Jorge (Atlantic) with 17.5 m draft for Super Post Panamax vessels.</p>
+                    <h3>Deep Water Ports</h3>
+                    <p>San Luis (Pacific) and San Jorge (Atlantic) with 17.5 m draft for Super Post Panamax vessels.</p>
                 </article>
                 <article class="home-pillar">
                     <div class="pillar-icon">🚂</div>
-                    <h3 data-i18n="platform.pillar.rail.title">Double-track railway</h3>
-                    <p data-i18n="platform.pillar.rail.desc">372 km of high-capacity rail corridor for interoceanic freight.</p>
+                    <h3>Double Track Railway</h3>
+                    <p>372 km high-capacity interoceanic rail corridor connecting both coasts.</p>
+                </article>
+                <article class="home-pillar">
+                    <div class="pillar-icon">🛣</div>
+                    <h3>Highways</h3>
+                    <p>Integrated road network linking ports, hubs, industrial zones, and border crossings.</p>
                 </article>
                 <article class="home-pillar">
                     <div class="pillar-icon">⚡</div>
-                    <h3 data-i18n="platform.pillar.energy.title">Energy corridor</h3>
-                    <p data-i18n="platform.pillar.energy.desc">Pipelines and gas ducts integrated into the logistics-industrial ecosystem.</p>
+                    <h3>Energy &amp; Digital Infrastructure</h3>
+                    <p>Pipelines, gas ducts, power systems, and digital connectivity across the corridor.</p>
                 </article>
             </div>
-            <div class="home-cta-row">
-                <a href="./proyecto.html" class="btn btn-primary" data-i18n="platform.asset.cta">View full project</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-dark home-benchmark">
-        <div class="container">
-            <p class="section-tag">BENCHMARK</p>
-            <h2>Positioning against global corridors</h2>
-            <p class="section-desc">Comparison for institutional investors. CIGSA is presented as an integrated private platform, not isolated state projects.</p>
-            <div class="benchmark benchmark-compact">
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Criterion</th>
-                                <th>CIGSA</th>
-                                <th>Panama Canal</th>
-                                <th>Tehuantepec (Mexico)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Capital model</td>
-                                <td class="highlight">Private ($8B) · BOT</td>
-                                <td>State / tolls</td>
-                                <td>Public investment</td>
-                            </tr>
-                            <tr>
-                                <td>Draft</td>
-                                <td class="highlight">17.5 m</td>
-                                <td>15.2 m</td>
-                                <td>N/A</td>
-                            </tr>
-                            <tr>
-                                <td>Vessel class</td>
-                                <td class="highlight">Super Post Panamax</td>
-                                <td>Neo-Panamax</td>
-                                <td>Ro-Ro / container</td>
-                            </tr>
-                            <tr>
-                                <td>Railway</td>
-                                <td class="highlight">372 km double track</td>
-                                <td>No rail link</td>
-                                <td>~306 km</td>
-                            </tr>
-                            <tr>
-                                <td>Investor access</td>
-                                <td class="highlight">Open (BOT concession)</td>
-                                <td>Limited</td>
-                                <td>Limited</td>
-                            </tr>
-                            <tr>
-                                <td>Governance</td>
-                                <td class="highlight">Private + shareholder communities</td>
-                                <td>State</td>
-                                <td>State</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="platform-flow" aria-label="How the ecosystem works together">
+                <div class="platform-flow__step">
+                    <span class="platform-flow__num">1</span>
+                    <strong>Deep-water ports</strong>
+                    <span>Vessel intake · Atlantic &amp; Pacific</span>
+                </div>
+                <div class="platform-flow__connector" aria-hidden="true">→</div>
+                <div class="platform-flow__step">
+                    <span class="platform-flow__num">2</span>
+                    <strong>Rail &amp; highways</strong>
+                    <span>372 km multimodal corridor</span>
+                </div>
+                <div class="platform-flow__connector" aria-hidden="true">→</div>
+                <div class="platform-flow__step">
+                    <span class="platform-flow__num">3</span>
+                    <strong>Logistics hubs</strong>
+                    <span>Storage · customs · distribution</span>
+                </div>
+                <div class="platform-flow__connector" aria-hidden="true">→</div>
+                <div class="platform-flow__step">
+                    <span class="platform-flow__num">4</span>
+                    <strong>Industrial &amp; energy</strong>
+                    <span>Manufacturing · pipelines · power</span>
+                </div>
+                <div class="platform-flow__connector" aria-hidden="true">→</div>
+                <div class="platform-flow__step platform-flow__step--accent">
+                    <span class="platform-flow__num">5</span>
+                    <strong>Global trade output</strong>
+                    <span>Efficient bi-oceanic transit</span>
                 </div>
             </div>
-            <p class="benchmark-note">Complementarity narrative versus the Panama Canal, not direct competition, within the global logistics system.</p>
         </div>
     </section>
 
-    <section class="section home-teaser">
+    <!-- Why Guatemala -->
+    <section class="section home-teaser platform-section" id="why-guatemala">
         <div class="container home-split">
             <div>
-                <p class="section-tag" data-i18n="platform.finance.tag">FINANCIAL VEHICLE</p>
-                <h2 data-i18n="platform.finance.title">Structure for institutional capital</h2>
-                <p class="section-desc" data-i18n="platform.finance.desc">100% private project based on use-rights assignment and recurring flows across port, rail, energy, and industrial verticals. BOT concession model with returns tied to system operations.</p>
-                <ul class="home-list">
-                    <li data-i18n="platform.finance.li1">Diversified revenue: port, railway, energy, and industry</li>
-                    <li data-i18n="platform.finance.li2">COINGT: regulated digital asset backed by real assets (land and corporate equity)</li>
-                    <li data-i18n="platform.finance.li3">7.6612% of distributable dividends allocated to COINGT holders</li>
-                    <li data-i18n="platform.finance.li4">Digital regulatory framework in El Salvador</li>
+                <p class="section-tag">WHY GUATEMALA</p>
+                <h2>The narrowest land bridge in the Americas</h2>
+                <ul class="home-list checkmarks platform-why-list">
+                    <li><strong>Strategic location</strong></li>
+                    <li><strong>Access to both oceans</strong></li>
+                    <li><strong>Gateway to North &amp; South America</strong> </li>
+                    <li><strong>Regional manufacturing hub</strong></li>
                 </ul>
-                <a href="./inversion.html" class="btn btn-primary" data-i18n="platform.finance.cta">Explore investment structure</a>
             </div>
             <div class="home-split-visual">
-                <img src="./barc.jpeg" alt="Financial structure and CIGSA project">
+                <img src="./mapa.png" alt="Map of Guatemala — strategic interoceanic corridor location">
             </div>
         </div>
     </section>
 
-    <section class="section section-dark home-teaser">
-        <div class="container home-split home-split-reverse">
-            <div class="home-split-visual">
-                <img src="./mapa.png" alt="Inclusive governance model and CIGSA interoceanic corridor">
-            </div>
-            <div>
-                <p class="section-tag" data-i18n="platform.gov.tag">GOVERNANCE</p>
-                <h2 data-i18n="platform.gov.title">Due diligence advantage: inclusive capitalism</h2>
-                <p class="section-desc" data-i18n="platform.gov.desc">CIGSA is the sole promoter, owner of 100% of the land, and Master Developer of the system. Territorial risk is mitigated by integrating local communities as economic shareholders, not excluded third parties.</p>
-                <div class="governance-highlight governance-highlight-compact">
-                    <span class="gov-label" data-i18n="platform.gov.label">Integrated Guatemalan families</span>
-                    <span class="gov-value">3,530</span>
-                    <p data-i18n="platform.gov.highlight">Voluntary territorial access agreements. Local landowners as stakeholders aligned with the project.</p>
-                </div>
-                <ul class="home-list checkmarks">
-                    <li data-i18n="platform.gov.li1">Eliminates expropriation risk — landowners are shareholders</li>
-                    <li data-i18n="platform.gov.li2">Reduces ESG exposure for institutional investors</li>
-                    <li data-i18n="platform.gov.li3">Documented social license to operate</li>
-                </ul>
-                <a href="./gobernanza.html" class="btn btn-outline" data-i18n="platform.gov.cta">Learn about the governance model</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section home-teaser" id="teaser-equipo">
+    <!-- The Corridor -->
+    <section class="section section-dark platform-section" id="corridor">
         <div class="container">
-            <p class="section-tag" data-i18n="platform.lead.tag">LEADERSHIP</p>
-            <h2 data-i18n="platform.lead.title">Executive leadership and institutional validation</h2>
-            <p class="section-desc" data-i18n="platform.lead.desc">Structured engagement: ODEPAL Presidency (Guillermo Catalán), Vice Presidency (Herbert Fernández), Communications (Alicia and Santiago Bassols), and international strategy (Rolando Melgar).</p>
-            <div class="leadership-grid">
-                <article class="leader-card">
-                    <span class="leader-role" data-i18n="platform.lead.role1">Presidency</span>
-                    <h3>Guillermo Catalán</h3>
-                    <span class="leader-title" data-i18n="platform.lead.title1">ODEPAL · Lead spokesperson</span>
-                </article>
-                <article class="leader-card">
-                    <span class="leader-role" data-i18n="platform.lead.role2">Vice Presidency</span>
-                    <h3>Herbert Fernández</h3>
-                    <span class="leader-title" data-i18n="platform.lead.title2">Message validation</span>
-                </article>
-                <article class="leader-card">
-                    <span class="leader-role" data-i18n="platform.lead.role3">Communications</span>
-                    <h3>Alicia & Santiago Bassols</h3>
-                    <span class="leader-title" data-i18n="platform.lead.title3">Narrative and investors</span>
-                </article>
-            </div>
-            <div class="home-cta-row">
-                <a href="equipo-contacto.html" class="btn btn-primary" data-i18n="platform.lead.cta">Contact the team</a>
+            <p class="section-tag">THE CORRIDOR</p>
+            <h2>372 km from Pacific to Atlantic</h2>
+            <p class="section-desc">A continuous multimodal corridor designed to move freight, energy, and industry across Guatemalan territory with institutional-grade infrastructure.</p>
+            <div class="platform-corridor-layout">
+                <div class="home-split-visual platform-corridor-map">
+                    <img src="./mapa.png" alt="CIGSA interoceanic corridor map — Pacific to Atlantic">
+                </div>
+                <div class="platform-corridor-detail">
+                    <ol class="platform-timeline">
+                        <li>
+                            <span class="platform-timeline__label">Pacific Ocean</span>
+                            <strong>San Luis Deep-water Port</strong>
+                            <span>Super Post Panamax · 17.5 m draft</span>
+                        </li>
+                        <li>
+                            <span class="platform-timeline__label">Rail corridor</span>
+                            <strong>372 km double-track railway</strong>
+                            <span>High-capacity interoceanic freight</span>
+                        </li>
+                        <li>
+                            <span class="platform-timeline__label">Logistics hubs</span>
+                            <strong>5+ integrated hubs</strong>
+                            <span>Distribution · customs · storage</span>
+                        </li>
+                        <li>
+                            <span class="platform-timeline__label">Industrial zones</span>
+                            <strong>5,000+ ha development land</strong>
+                            <span>Manufacturing &amp; free-trade capacity</span>
+                        </li>
+                        <li>
+                            <span class="platform-timeline__label">Atlantic Ocean</span>
+                            <strong>San Jorge Deep-water Port</strong>
+                            <span>Atlantic gateway · Caribbean access</span>
+                        </li>
+                    </ol>
+                    <dl class="platform-corridor-stats">
+                        <div><dt>372 km</dt><dd>Pacific → Atlantic</dd></div>
+                        <div><dt>2</dt><dd>Deep-water ports</dd></div>
+                        <div><dt>5+</dt><dd>Logistics hubs</dd></div>
+                        <div><dt>5,000+ ha</dt><dd>Industrial zones</dd></div>
+                    </dl>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Economic Impact -->
+    <section class="section home-teaser platform-section" id="economic-impact">
+        <div class="container">
+            <p class="section-tag">ECONOMIC IMPACT</p>
+            <h2>Transformative impact for Guatemala and the region</h2>
+            <p class="section-desc">CIGSA is designed to generate measurable economic outcomes across GDP, employment, investment, and trade efficiency over the life of the concession.</p>
+            <div class="platform-impact-grid">
+                <article class="platform-impact-card">
+                    <span class="platform-impact-value">+2.5%</span>
+                    <span class="platform-impact-label">GDP growth contribution</span>
+                    <p></p>
+                </article>
+                <article class="platform-impact-card">
+                    <span class="platform-impact-value">100K+</span>
+                    <span class="platform-impact-label">Employment</span>
+                    <p></p>
+                </article>
+                <article class="platform-impact-card">
+                    <span class="platform-impact-value">$8B</span>
+                    <span class="platform-impact-label">Foreign investment</span>
+                    <p></p>
+                </article>
+                <article class="platform-impact-card">
+                    <span class="platform-impact-value">3,700+</span>
+                    <span class="platform-impact-label">Regional development</span>
+                    <p></p>
+                </article>
+                <article class="platform-impact-card">
+                    <span class="platform-impact-value">35%</span>
+                    <span class="platform-impact-label">Trade efficiency</span>
+                    <p></p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment -->
+    <section class="section section-dark platform-section platform-section--investment" id="investment">
+        <div class="container">
+            <p class="section-tag">INVESTMENT</p>
+            <h2>Investment Opportunities</h2>
+            <p class="section-desc">CIGSA offers institutional-grade access to a long-duration infrastructure platform — structured for public-private collaboration, recurring cash flows, and sovereign-scale impact.</p>
+            <div class="platform-invest-grid">
+                <article class="platform-invest-card">
+                    <h3>Public-private collaboration</h3>
+                    <p>BOT concession model aligning state facilitation with private capital, operations, and risk management.</p>
+                </article>
+                <article class="platform-invest-card">
+                    <h3>Institutional investors</h3>
+                    <p>Infrastructure funds, multilateral banks, family offices, and long-horizon asset managers.</p>
+                </article>
+                <article class="platform-invest-card">
+                    <h3>Strategic partners</h3>
+                    <p>Port operators, shipping lines, rail operators, energy companies, and industrial developers.</p>
+                </article>
+                <article class="platform-invest-card">
+                    <h3>Infrastructure funds</h3>
+                    <p>Diversified exposure across port, rail, energy, and industrial revenue streams.</p>
+                </article>
+                <article class="platform-invest-card">
+                    <h3>Governments &amp; institutions</h3>
+                    <p>Embassies, development banks, and trade agencies seeking regional connectivity solutions.</p>
+                </article>
+            </div>
+            <div class="home-cta-row platform-invest-cta">
+                <a href="equipo-contacto.html" class="btn btn-primary">Download Investment Deck</a>
+                <a href="equipo-contacto.html" class="btn btn-outline">Request Data Room Access</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability -->
+    <section class="section home-teaser platform-section" id="sustainability">
+        <div class="container home-split">
+            <div>
+                <p class="section-tag">SUSTAINABLE</p>
+                <h2>Long-term value with territorial responsibility</h2>
+                <p class="section-desc">CIGSA integrates environmental stewardship, community development, and biodiversity protection into the core of the platform — not as an appendix to infrastructure.</p>
+                <ul class="home-list checkmarks">
+                    <li><strong>Environmental compensation</strong> </li>
+                    <li><strong>Community development</strong> </li>
+                    <li><strong>Biodiversity</strong></li>
+                    <li><strong>Long-term growth</strong> </li>
+                </ul>
+            </div>
+            <div class="home-split-visual">
+                <img src="./barc.jpeg" alt="Territory and sustainable development along the CIGSA corridor">
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate -->
+    <section class="section section-dark platform-section" id="corporate">
+        <div class="container platform-corporate">
+            <p class="section-tag">CORPORATE</p>
+            <h2>About CIGSA</h2>
+            <ul class="platform-corporate-about">
+                <li>Private company</li>
+                <li>Guatemalan leadership</li>
+                <li>International vision</li>
+                <li>Long-term infrastructure developer</li>
+            </ul>
+            <div class="platform-corporate-grid">
+                <div>
+                    <h3>Executive leadership</h3>
+                    <div class="leadership-grid leadership-grid--compact">
+                        <article class="leader-card">
+                            <span class="leader-role">Presidency</span>
+                            <h4>Guillermo Catalán</h4>
+                            <span class="leader-title">ODEPAL · Lead spokesperson</span>
+                        </article>
+                        <article class="leader-card">
+                            <span class="leader-role">Vice Presidency</span>
+                            <h4>Herbert Fernández</h4>
+                            <span class="leader-title">Message validation</span>
+                        </article>
+                        <article class="leader-card">
+                            <span class="leader-role">Communications</span>
+                            <h4>Alicia &amp; Santiago Bassols</h4>
+                            <span class="leader-title">Narrative &amp; investors</span>
+                        </article>
+                    </div>
+                </div>
+                <div>
+                    <h3>Advisory board</h3>
+                    <p class="section-desc">International advisors in logistics, finance, energy, and public policy supporting strategic governance and investor confidence.</p>
+                    <h3>Governance</h3>
+                    <p class="section-desc">Inclusive capitalism model: 100% private land ownership, voluntary community integration, and documented social license to operate.</p>
+                    <a href="gobernanza.html" class="btn btn-outline">Governance model</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Updates -->
+    <section class="section home-teaser platform-section" id="news">
+        <div class="container">
+            <p class="section-tag">NEWS &amp; UPDATES</p>
+            <h2>Latest developments</h2>
+            <p class="section-desc">Project milestones, institutional memberships, investment news, and press releases — keeping stakeholders informed as the platform advances.</p>
+            <div class="platform-news-grid">
+                <article class="platform-news-card">
+                    <span class="platform-news-meta">Membership</span>
+                    <h3>IAPH Membership</h3>
+                    <p>CIGSA advances institutional alignment with global port and maritime industry standards through IAPH engagement.</p>
+                    <a href="prensa.html" class="card-link">Read more →</a>
+                </article>
+                <article class="platform-news-card">
+                    <span class="platform-news-meta">Investment</span>
+                    <h3>Institutional investor engagement</h3>
+                    <p>Structured dialogues with infrastructure funds and strategic partners on BOT structure and corridor economics.</p>
+                    <a href="inversion.html" class="card-link">Read more →</a>
+                </article>
+                <article class="platform-news-card">
+                    <span class="platform-news-meta">Milestone</span>
+                    <h3>Corridor development progress</h3>
+                    <p>Continued advancement on territorial agreements, engineering, and master planning across the 372 km corridor.</p>
+                    <a href="proyecto.html" class="card-link">Read more →</a>
+                </article>
+                <article class="platform-news-card">
+                    <span class="platform-news-meta">Press</span>
+                    <h3>Press releases &amp; media</h3>
+                    <p>Official communications on CIGSA positioning, governance, and the interoceanic platform narrative.</p>
+                    <a href="prensa.html" class="card-link">Read more →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-dark platform-section" id="contact">
+        <div class="container">
+            <p class="section-tag">CONTACT</p>
+            <h2>Get in touch</h2>
+            <div class="platform-contact-layout">
+                <div class="platform-contact-info">
+                    <h3>Corporate information</h3>
+                    <p><strong>CIGSA</strong> — Interoceanic Corridor of Guatemala</p>
+                    <p>Guatemala City, Guatemala</p>
+                    <p><a href="mailto:info@cigsa.gt">info@cigsa.gt</a></p>
+                    <div class="home-split-visual platform-contact-map">
+                        <img src="./mapa.png" alt="CIGSA corporate location — Guatemala">
+                    </div>
+                </div>
+                <form class="contact-form platform-contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="contact-name">Full name</label>
+                        <input id="contact-name" type="text" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input id="contact-email" type="email" placeholder="you@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-org">Organization</label>
+                        <input id="contact-org" type="text" placeholder="Company or institution">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-type">Inquiry type</label>
+                        <select id="contact-type" required>
+                            <option value="">Select...</option>
+                            <option>Institutional investor / Data Room</option>
+                            <option>Strategic partner / Operator</option>
+                            <option>Investment deck request</option>
+                            <option>Press / Media</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" rows="4" placeholder="Describe your interest in the project..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            <span>I authorize CIGSA to process my personal data to respond to this inquiry, in accordance with applicable data protection regulations.</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">Submit inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    </main>
 
     <footer class="footer footer-main">
         <div class="container footer-grid">
@@ -348,7 +584,7 @@
                     <li><a href="proyecto.html">Project</a></li>
                     <li><a href="inversion.html">Investment</a></li>
                     <li><a href="gobernanza.html">Governance</a></li>
-                    <li><a href="innovacion.html">Innovation</a></li>
+                    <li><a href="#sustainability">Sustainable</a></li>
                     <li><a href="prensa.html">Press</a></li>
                     <li><a href="insights.html">Insights</a></li>
                     <li><a href="equipo-contacto.html">Team & Contact</a></li>

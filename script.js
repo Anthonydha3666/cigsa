@@ -82,12 +82,16 @@ function initScrollAnimations() {
     fadeElements.forEach(el => el.classList.add('fade-in'));
 
     // Add gradient-border and tilt to interactive cards
+    document.querySelectorAll('.platform-impact-card, .platform-invest-card, .platform-news-card').forEach(el => {
+        el.classList.add('gradient-border-card', 'tilt-card');
+    });
+
     document.querySelectorAll('.home-pillar, .leader-card, .infra-card, .coingt-card, .agent-card').forEach(el => {
         el.classList.add('gradient-border-card', 'tilt-card');
     });
 
     // Add stagger class to grids
-    document.querySelectorAll('.home-pillars, .leadership-grid, .infra-grid, .coingt-grid, .agents-grid, .press-grid, .insights-grid, .team-grid').forEach(el => {
+    document.querySelectorAll('.home-pillars, .leadership-grid, .infra-grid, .coingt-grid, .agents-grid, .press-grid, .insights-grid, .team-grid, .platform-impact-grid, .platform-invest-grid, .platform-news-grid, .platform-flow').forEach(el => {
         el.classList.add('stagger-grid');
     });
 
@@ -308,7 +312,7 @@ function initSmoothScroll() {
    COUNTER ANIMATION (with glow)
    ══════════════════════════════════════ */
 function initCounterAnimation() {
-    const statValues = document.querySelectorAll('.stat-value, .gov-value');
+    const statValues = document.querySelectorAll('.stat-value, .gov-value, .platform-impact-value');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
