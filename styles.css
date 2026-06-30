@@ -316,6 +316,7 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 
 /* === HERO === */
 .hero {
+    margin-top: 80px;
     min-height: 70vh;
     display: flex;
     flex-direction: column;
@@ -337,6 +338,7 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
     inset: 0;
     z-index: 0;
     overflow: hidden;
+
 }
 
 .hero-bg img {
@@ -349,6 +351,7 @@ html:not([data-theme="light"]) .theme-toggle__icon--moon {
 }
 
 .hero-bg-overlay {
+    
     position: absolute;
     inset: 0;
     background:
@@ -3214,6 +3217,7 @@ body.ecosystem-landing {
     letter-spacing: 0.08em;
     color: #f8fbff;
     height: 27px;
+    text-align: center;
 }
 
 .portal-card--featured .portal-card__title-main {
@@ -3222,6 +3226,7 @@ body.ecosystem-landing {
     letter-spacing: 0.06em;
     color: #f8fbff;
     margin-top: 1px;
+    text-align: center;
 }
 
 .portal-card--coingt .portal-card__title--capital,
@@ -3239,6 +3244,7 @@ body.ecosystem-landing {
     letter-spacing: 0.14em;
     line-height: 1.35;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .portal-card--featured .portal-card__ecosystem {
@@ -3256,6 +3262,7 @@ body.ecosystem-landing {
     font-weight: 300;
     line-height: 1.55;
     color: rgba(240, 246, 252, 0.88);
+    text-align: center;
 }
 
 .portal-card--featured .portal-card__infra-grid {
