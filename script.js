@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
     initScrollAnimations();
     initNavbar();
+    initThemeToggle();
     initChatWidget();
     initForm();
     initSmoothScroll();
@@ -193,6 +194,38 @@ function initNavbar() {
             link.addEventListener('click', closeMobileNav);
         });
     }
+}
+
+/* ══════════════════════════════════════
+   THEME TOGGLE (Light / Dark)
+   ══════════════════════════════════════ */
+function initThemeToggle() {
+    const STORAGE_KEY = 'cigsa-theme';
+    const root = document.documentElement;
+    const btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+
+    const getPreferred = () => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'light' || stored === 'dark') return stored;
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'light'
+            : 'dark';
+    };
+
+    const applyTheme = (theme) => {
+        root.setAttribute('data-theme', theme);
+        btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    };
+
+    let current = getPreferred();
+    applyTheme(current);
+
+    btn.addEventListener('click', () => {
+        current = current === 'light' ? 'dark' : 'light';
+        localStorage.setItem(STORAGE_KEY, current);
+        applyTheme(current);
+    });
 }
 
 /* ══════════════════════════════════════
@@ -419,7 +452,6 @@ function initEcosystemLanding() {
     if (!landing) return;
 
     initEcosystemParticles(landing.querySelector('.ecosystem-bg__particles'));
-    initPortalPanels(landing.querySelector('[data-portal-panels]'));
 }
 
 function initEcosystemParticles(container) {
@@ -441,38 +473,6 @@ function initEcosystemParticles(container) {
         particle.style.setProperty('--drift-y', `${-30 + Math.random() * 60}px`);
         container.appendChild(particle);
     }
-}
-
-function initPortalPanels(grid) {
-    if (!grid) return;
-
-    const cards = grid.querySelectorAll('[data-portal-card]');
-    if (!cards.length) return;
-
-    const mq = window.matchMedia('(min-width: 1025px)');
-    const setActive = (activeCard) => {
-        if (!mq.matches) {
-            cards.forEach((card) => card.classList.remove('portal-card--active'));
-            grid.classList.remove('portal-panels--has-active');
-            return;
-        }
-        cards.forEach((card) => {
-            card.classList.toggle('portal-card--active', card === activeCard);
-        });
-        grid.classList.toggle('portal-panels--has-active', Boolean(activeCard));
-    };
-
-    cards.forEach((card) => {
-        card.addEventListener('mouseenter', () => setActive(card));
-        card.addEventListener('focusin', () => setActive(card));
-    });
-
-    grid.addEventListener('mouseleave', () => setActive(null));
-    grid.addEventListener('focusout', (event) => {
-        if (!grid.contains(event.relatedTarget)) setActive(null);
-    });
-
-    mq.addEventListener('change', () => setActive(null));
 }
 
 /* ══════════════════════════════════════

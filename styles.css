@@ -27,6 +27,18 @@
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+[data-theme="light"] {
+    --bg-primary: #f5f5f7;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f3f4f6;
+    --text-primary: #020617;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    --border: #e5e7eb;
+    --border-light: #e5e7eb;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -52,9 +64,6 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(8, 11, 15, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
     padding: 16px 0;
     transition: background 0.35s ease, border-color 0.35s ease;
 }
@@ -74,14 +83,40 @@ body {
     border-bottom-color: transparent;
 }
 
+.navbar--ecosystem {
+  background-color: #00c9a700 !important;
+}
+
+
+.nav-container--ecosystem {
+   
+}
+
+.nav-logo--ecosystem img {
+    display: block;
+    height: 36px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    margin-left: 30px;
+}
+
+.navbar--ecosystem .lang-btn {
+    color: rgba(240, 246, 252, 0.75);
+}
+
+.navbar--ecosystem .lang-btn.active {
+    color: var(--accent);
+}
+
+.navbar--ecosystem .lang-sep {
+    color: rgba(240, 246, 252, 0.45);
+}
+
 .nav-container {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 24px;
+    width: 100%;
     display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .nav-logo {
@@ -90,6 +125,7 @@ body {
     gap: 10px;
     text-decoration: none;
     color: inherit;
+    margin-left: 30px;
 }
 
 .logo-icon {
@@ -145,7 +181,7 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    margin-right: 20px;
 }
 
 .lang-switch {
@@ -183,6 +219,61 @@ body {
     user-select: none;
 }
 
+.theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    background: radial-gradient(circle at 30% 20%, rgba(248, 250, 252, 0.2), transparent 55%), rgba(15, 23, 42, 0.9);
+    cursor: pointer;
+    padding: 0;
+    color: #e5e7eb;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.theme-toggle:hover {
+    border-color: rgba(248, 250, 252, 0.7);
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.8), 0 0 0 4px rgba(148, 163, 184, 0.35);
+}
+
+.theme-toggle__icon {
+    font-size: 14px;
+    line-height: 1;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.theme-toggle__icon--moon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-theme="light"] .theme-toggle__icon--sun {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-theme="light"] .theme-toggle__icon--moon {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+html:not([data-theme="light"]) .theme-toggle__icon--sun {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+html:not([data-theme="light"]) .theme-toggle__icon--moon {
+    opacity: 1;
+    transform: scale(1);
+}
+
 .btn-investor {
     display: inline-flex;
     align-items: center;
@@ -198,6 +289,7 @@ body {
     text-decoration: none;
     letter-spacing: 0.02em;
     white-space: nowrap;
+    margin-left: 5px;
 }
 
 .btn-investor:hover {
@@ -224,13 +316,12 @@ body {
 
 /* === HERO === */
 .hero {
-    min-height: 100vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 120px 24px 80px;
     position: relative;
     background: radial-gradient(ellipse at 50% 50%, rgba(200, 169, 96, 0.03) 0%, transparent 70%);
 }
@@ -310,6 +401,103 @@ body {
     padding: 32px 40px 0;
     border-top-color: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(2px);
+}
+
+.hero-home .hero-stats.hero-stats--strip {
+    position: relative;
+    width: 100%;
+    max-width: min(1280px, 100%);
+    margin-top: 64px;
+    padding: 28px 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(2px);
+    background: transparent;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 0;
+    overflow: hidden;
+}
+
+.hero-home:has(.hero-stats--strip) {
+    padding-bottom: 0;
+}
+
+.hero-stats--strip .stat {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 14px 16px;
+    text-align: left;
+}
+
+.hero-stats--strip .stat:nth-child(n + 7) {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-stats--strip .stat:not(:nth-child(6n))::after {
+    content: '';
+    position: absolute;
+    top: 22%;
+    right: 0;
+    width: 1px;
+    height: 56%;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.hero-stats--strip .stat-icon {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    color: var(--teal);
+}
+
+.hero-stats--strip .stat-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.hero-stats--strip .stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.hero-stats--strip .stat-value {
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 1.2vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--teal);
+    margin: 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hero-stats--strip .stat-value--text {
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    font-size: clamp(0.72rem, 1vw, 0.85rem);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--teal);
+    max-width: 9rem;
+}
+
+.hero-stats--strip .stat-label {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: none;
+}
+
+.hero-stats--strip .stat-value.counting {
+    color: var(--teal);
+    text-shadow: 0 0 20px rgba(0, 201, 167, 0.4);
 }
 
 .hero-home .stat-value {
@@ -2228,7 +2416,7 @@ td.highlight {
     }
 
     .nav-container {
-        flex-wrap: wrap;
+      margin-right: 30px;
     }
 
     body.nav-open {
@@ -2239,6 +2427,38 @@ td.highlight {
         flex-direction: column;
         gap: 24px;
         align-items: center;
+    }
+
+    .hero-stats--strip {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, auto);
+    }
+
+    .hero-stats--strip .stat:nth-child(n + 7) {
+        border-top: none;
+    }
+
+    .hero-stats--strip .stat:nth-child(n + 4) {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-stats--strip .stat:not(:nth-child(6n))::after {
+        content: none;
+    }
+
+    .hero-stats--strip .stat:not(:nth-child(3n))::after {
+        content: '';
+        position: absolute;
+        top: 22%;
+        right: 0;
+        width: 1px;
+        height: 56%;
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-home .hero-stats.hero-stats--strip {
+        margin-top: 40px;
+        padding-top: 24px;
     }
 
     .hero h1 {
@@ -2344,9 +2564,9 @@ body.ecosystem-landing {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: 72px 16px 48px;
+
+    
+
 }
 
 .ecosystem-hero__inner {
@@ -2357,16 +2577,21 @@ body.ecosystem-landing {
     max-width: 900px;
     position: relative;
     z-index: 1;
+    margin-top: 30px;
 }
 
 .ecosystem-hero__brand {
     margin: 0 0 28px;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    font-weight: 300;
-    letter-spacing: 0.42em;
-    text-indent: 0.42em;
-    color: rgba(240, 246, 252, 0.95);
-    line-height: 1;
+    line-height: 0;
+}
+
+.ecosystem-hero__brand img {
+    display: block;
+    width: clamp(160px, 32vw, 260px);
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+    object-position: center;
 }
 
 .ecosystem-hero__title {
@@ -2425,7 +2650,7 @@ body.ecosystem-landing {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-top: 56px;
+
     text-decoration: none;
     color: rgba(201, 169, 110, 0.65);
     transition: color 0.3s ease;
@@ -2438,7 +2663,7 @@ body.ecosystem-landing {
 .ecosystem-hero__scroll-line {
     display: block;
     width: 1px;
-    height: 48px;
+    height:0;
     background: linear-gradient(180deg, transparent, rgba(201, 169, 110, 0.5));
 }
 
@@ -2457,7 +2682,7 @@ body.ecosystem-landing {
 .ecosystem-portals {
     position: relative;
     z-index: 2;
-    padding: 180px 16px 64px;
+    padding: 30px  16px 64px;
 }
 
 .ecosystem-portals__inner {
@@ -2749,7 +2974,7 @@ body.ecosystem-landing {
 .marine-portal__lead {
     color: rgba(220, 230, 240, 0.65);
     max-width: 560px;
-    margin: 0 auto 48px;
+    margin: 30px auto 48px;
     text-align: center;
     line-height: 1.65;
     font-size: clamp(0.9rem, 1.5vw, 1rem);
@@ -2768,7 +2993,8 @@ body.ecosystem-landing {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
     min-height: 85vh;
     min-height: 85dvh;
     padding: 0;
@@ -2802,6 +3028,7 @@ body.ecosystem-landing {
 .portal-card__media--territory img {
     object-position: center 55%;
     filter: saturate(1.15) hue-rotate(-18deg) brightness(0.9) contrast(1.05);
+    
 }
 
 .portal-card--ruta:hover .portal-card__media--territory img,
@@ -2814,13 +3041,13 @@ body.ecosystem-landing {
 }
 
 .portal-card__media--capital img {
-    object-position: center 42%;
-    filter: saturate(0.35) hue-rotate(210deg) brightness(0.65) contrast(1.35);
+    object-position: center center;
+    filter: saturate(0.85) brightness(0.88) contrast(1.1);
 }
 
 .portal-card--coingt:hover .portal-card__media--capital img,
 .portal-card--coingt:focus-within .portal-card__media--capital img {
-    filter: saturate(0.45) hue-rotate(210deg) brightness(0.75) contrast(1.4);
+    filter: saturate(0.95) brightness(0.95) contrast(1.12);
 }
 
 .portal-card__media--capital::before {
@@ -2858,25 +3085,25 @@ body.ecosystem-landing {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(180deg, rgba(4, 8, 14, 0.35) 0%, rgba(4, 8, 14, 0.72) 45%, rgba(2, 5, 10, 0.94) 100%);
+    background: linear-gradient(180deg, rgba(2, 5, 10, 0.92) 0%, rgba(4, 8, 14, 0.55) 38%, rgba(4, 8, 14, 0.2) 100%);
     transition: background 0.5s ease;
 }
 
 .portal-card--featured .portal-card__overlay {
-    background: linear-gradient(180deg, rgba(4, 10, 18, 0.4) 0%, rgba(4, 10, 18, 0.75) 50%, rgba(2, 6, 12, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(2, 6, 12, 0.94) 0%, rgba(4, 10, 18, 0.58) 42%, rgba(4, 10, 18, 0.18) 100%);
 }
 
 .portal-card--ruta .portal-card__overlay {
-    background: linear-gradient(180deg, rgba(6, 14, 12, 0.45) 0%, rgba(4, 12, 10, 0.78) 50%, rgba(2, 8, 8, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(2, 8, 8, 0.94) 0%, rgba(4, 12, 10, 0.6) 42%, rgba(6, 14, 12, 0.2) 100%);
 }
 
 .portal-card--coingt .portal-card__overlay {
-    background: linear-gradient(180deg, rgba(4, 8, 18, 0.2) 0%, rgba(4, 10, 24, 0.5) 45%, rgba(2, 4, 14, 0.82) 100%);
+    background: linear-gradient(180deg, rgba(2, 4, 14, 0.88) 0%, rgba(4, 10, 24, 0.48) 40%, rgba(4, 8, 18, 0.15) 100%);
 }
 
 .portal-card--coingt:hover .portal-card__overlay,
 .portal-card--coingt:focus-within .portal-card__overlay {
-    background: linear-gradient(180deg, rgba(4, 8, 18, 0.12) 0%, rgba(4, 10, 24, 0.4) 45%, rgba(2, 4, 14, 0.75) 100%);
+    background: linear-gradient(180deg, rgba(2, 4, 14, 0.82) 0%, rgba(4, 10, 24, 0.42) 40%, rgba(4, 8, 18, 0.12) 100%);
 }
 
 .portal-card__content {
@@ -2886,7 +3113,8 @@ body.ecosystem-landing {
     flex-direction: column;
     gap: 10px;
     padding: clamp(32px, 5vw, 56px) clamp(28px, 4vw, 48px);
-    max-width: 640px;
+    max-width: 720px;
+    width: 100%;
     transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2930,11 +3158,11 @@ body.ecosystem-landing {
 
 .portal-card:hover,
 .portal-card:focus-within {
-    transform: translateY(-2px);
-    border-color: rgba(201, 169, 110, 0.35);
+    transform: translateY(-6px);
+    border-color: rgba(201, 169, 110, 0.45);
     box-shadow:
-        0 24px 64px rgba(0, 0, 0, 0.45),
-        0 0 48px rgba(201, 169, 110, 0.12),
+        0 16px 40px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(201, 169, 110, 0.18),
         inset 0 0 80px rgba(201, 169, 110, 0.04);
 }
 
@@ -2950,15 +3178,427 @@ body.ecosystem-landing {
 
 .portal-card:hover .portal-card__overlay,
 .portal-card:focus-within .portal-card__overlay {
-    background: linear-gradient(180deg, rgba(4, 8, 14, 0.25) 0%, rgba(4, 8, 14, 0.65) 45%, rgba(2, 5, 10, 0.88) 100%);
+    background: linear-gradient(180deg, rgba(2, 5, 10, 0.85) 0%, rgba(4, 8, 14, 0.5) 38%, rgba(4, 8, 14, 0.15) 100%);
 }
 
 .portal-card--featured {
-    border-color: rgba(201, 169, 110, 0.2);
+    border-color: rgba(201, 169, 110, 0.35);
+    box-shadow: 0 0 24px rgba(201, 169, 110, 0.12);
 }
 
 .portal-card--coingt:hover { border-color: rgba(100, 200, 255, 0.5); }
 .portal-card--ruta:hover { border-color: rgba(80, 200, 180, 0.45); }
+
+/* — Platform card only (reference layout) — */
+.portal-card--featured .portal-card__content--platform {
+    flex: 1;
+    align-self: stretch;
+    min-height: 100%;
+    max-width: 560px;
+    gap: 0;
+    padding-top: clamp(36px, 5vw, 52px);
+}
+
+.portal-card--featured .portal-card__title--platform {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    line-height: 0.95;
+    min-height: clamp(5rem, 9vw, 7.2rem);
+}
+
+.portal-card--featured .portal-card__title-the {
+    font-size: clamp(1.5rem, 3.1vw, 2.3rem);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #f8fbff;
+    height: 27px;
+}
+
+.portal-card--featured .portal-card__title-main {
+    font-size: clamp(2.3rem, 3.4vw, 3.9rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #f8fbff;
+    margin-top: 1px;
+}
+
+.portal-card--coingt .portal-card__title--capital,
+.portal-card--ruta .portal-card__title--territory {
+    font-size: clamp(2.4rem, 3.5vw, 4rem);
+    min-height: clamp(5rem, 9vw, 7.2rem);
+}
+
+.portal-card--featured .portal-card__ecosystem,
+.portal-card__layer {
+    margin: 0 ;
+    max-width: 420px;
+    font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.portal-card--featured .portal-card__ecosystem {
+    color: #c9a96e;
+}
+
+.portal-card__desc,
+.portal-card__desc--capital,
+.portal-card__desc--territory {
+    margin: 0 0 28px;
+    max-width: 420px;
+    width: 100%;
+    align-self: flex-start;
+    font-size: clamp(0.88rem, 1.3vw, 0.95rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(240, 246, 252, 0.88);
+}
+
+.portal-card--featured .portal-card__infra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 10px;
+    margin-top: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.portal-card--featured .portal-card__infra-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+.portal-card--featured .portal-card__infra-icon {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    color: #c9a96e;
+}
+
+.portal-card--featured .portal-card__infra-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.portal-card--featured .portal-card__infra-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: rgba(248, 251, 255, 0.92);
+}
+
+.portal-card--featured .portal-card__cta--platform {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    max-width: 340px;
+    margin-top: 20px;
+    padding: 12px 18px;
+    border: 1px solid #c9a96e;
+    border-radius: 2px;
+    background: transparent;
+    color: #f8fbff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.portal-card--featured:hover .portal-card__cta--platform,
+.portal-card--featured:focus-within .portal-card__cta--platform {
+    background: rgba(201, 169, 110, 0.08);
+    color: #fff;
+}
+
+.portal-card--featured .portal-card__cta-globe {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    color: #c9a96e;
+}
+
+.portal-card--featured .portal-card__cta-globe svg {
+    width: 100%;
+    height: 100%;
+}
+
+.portal-card--featured .portal-card__cta-text {
+    flex: 1;
+    text-align: center;
+}
+
+.portal-card--featured .portal-card__cta-arrow {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1;
+    color: #c9a96e;
+}
+
+/* — Capital card only (reference layout) — */
+.portal-card--coingt .portal-card__content--capital,
+.portal-card--ruta .portal-card__content--territory {
+    flex: 1;
+    align-self: stretch;
+    min-height: 100%;
+    max-width: 560px;
+    gap: 0;
+    padding-top: clamp(36px, 5vw, 52px);
+}
+
+.portal-card--coingt .portal-card__content--capital > br,
+.portal-card--ruta .portal-card__content--territory > br {
+    display: none;
+}
+
+.portal-card--coingt .portal-card__title--capital {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: #f8fbff;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    line-height: 0.95;
+    min-height: clamp(5rem, 9vw, 7.2rem);
+}
+
+.portal-card__layer {
+    text-transform: uppercase;
+}
+
+.portal-card--coingt .portal-card__layer {
+    color: #e58a3e;
+}
+
+.portal-card--coingt .portal-card__accent-line {
+    display: block;
+    width: 0;
+    height: 2px;
+    margin: 0 0 16px;
+    background: #e58a3e;
+}
+
+.portal-card--coingt .portal-card__capital-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 28px;
+    margin-top: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.portal-card--coingt .portal-card__capital-grid-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+.portal-card--coingt .portal-card__capital-grid-icon {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    color: #e58a3e;
+}
+
+.portal-card--coingt .portal-card__capital-grid-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.portal-card--coingt .portal-card__capital-grid-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: rgba(248, 251, 255, 0.92);
+}
+
+.portal-card--coingt .portal-card__cta--capital {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    max-width: 340px;
+    margin-top: 20px;
+    padding: 12px 18px;
+    border: 1px solid #e58a3e;
+    border-radius: 2px;
+    background: transparent;
+    color: #f8fbff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.portal-card--coingt:hover .portal-card__cta--capital,
+.portal-card--coingt:focus-within .portal-card__cta--capital {
+    background: rgba(229, 138, 62, 0.1);
+    color: #fff;
+}
+
+.portal-card--coingt .portal-card__cta-globe {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    color: #e58a3e;
+}
+
+.portal-card--coingt .portal-card__cta-globe svg {
+    width: 100%;
+    height: 100%;
+}
+
+.portal-card--coingt .portal-card__cta-text {
+    flex: 1;
+    text-align: center;
+}
+
+.portal-card--coingt .portal-card__cta-arrow {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1;
+    color: #e58a3e;
+}
+
+/* — Territory card only (reference layout) — */
+.portal-card--ruta .portal-card__title--territory {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: #f8fbff;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    line-height: 0.95;
+    min-height: clamp(5rem, 9vw, 7.2rem);
+}
+
+.portal-card--ruta .portal-card__layer--territory {
+    color: #6ecf9a;
+}
+
+.portal-card--ruta .portal-card__accent-line--territory {
+    display: block;
+    width: 36px;
+    height: 2px;
+    margin: 0 0 16px;
+    background: #6ecf9a;
+}
+
+.portal-card--ruta .portal-card__territory-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 28px;
+    margin-top: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.portal-card--ruta .portal-card__territory-grid-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+.portal-card--ruta .portal-card__territory-grid-icon {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    color: #6ecf9a;
+}
+
+.portal-card--ruta .portal-card__territory-grid-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.portal-card--ruta .portal-card__territory-grid-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: rgba(248, 251, 255, 0.92);
+}
+
+.portal-card--ruta .portal-card__cta--territory {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    max-width: 340px;
+    margin-top: 20px;
+    padding: 12px 18px;
+    border: 1px solid #6ecf9a;
+    border-radius: 2px;
+    background: transparent;
+    color: #f8fbff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.portal-card--ruta:hover .portal-card__cta--territory,
+.portal-card--ruta:focus-within .portal-card__cta--territory {
+    background: rgba(110, 207, 154, 0.1);
+    color: #fff;
+}
+
+.portal-card--ruta .portal-card__cta-globe {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    color: #6ecf9a;
+}
+
+.portal-card--ruta .portal-card__cta-globe svg {
+    width: 100%;
+    height: 100%;
+}
+
+.portal-card--ruta .portal-card__cta-text {
+    flex: 1;
+    text-align: center;
+}
+
+.portal-card--ruta .portal-card__cta-arrow {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    line-height: 1;
+    color: #6ecf9a;
+}
 
 .portal-card__badge {
     font-size: 0.65rem;
@@ -3019,7 +3659,7 @@ body.ecosystem-landing {
 }
 
 .portal-card__list {
-    flex: 1;
+    flex: 0;
     margin: 12px 0 0;
     padding: 0;
     list-style: none;
@@ -3106,12 +3746,12 @@ body.ecosystem-landing {
     color: rgba(201, 169, 110, 0.65);
 }
 
-/* — Cinematic expand panels (desktop) — */
+/* — Portal panels (desktop row, equal width) — */
 @media (min-width: 1025px) {
     .portal-panels {
         flex-direction: row;
         align-items: stretch;
-        gap: 4px;
+        gap: 6px;
         height: min(85vh, 880px);
         min-height: 520px;
     }
@@ -3120,59 +3760,6 @@ body.ecosystem-landing {
         flex: 1 1 0;
         min-height: unset;
         height: auto;
-        transition:
-            flex 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-            border-color 0.4s ease,
-            box-shadow 0.45s ease,
-            opacity 0.45s ease;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card {
-        flex: 0.68 1 0;
-        opacity: 0.82;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card.portal-card--active {
-        flex: 2.45 1 0;
-        opacity: 1;
-        transform: none;
-        z-index: 2;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card:not(.portal-card--active) .portal-card__content {
-        opacity: 0.72;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card:not(.portal-card--active) .portal-card__kicker,
-    .portal-panels.portal-panels--has-active .portal-card:not(.portal-card--active) .portal-card__metric,
-    .portal-panels.portal-panels--has-active .portal-card:not(.portal-card--active) .portal-card__subtitle {
-        opacity: 0;
-        max-height: 0;
-        margin-top: 0;
-        overflow: hidden;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card:not(.portal-card--active) .portal-card__list--tags {
-        opacity: 0;
-        max-height: 0;
-        margin-top: 0;
-        overflow: hidden;
-        transition: opacity 0.35s ease, max-height 0.45s ease, margin 0.45s ease;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card.portal-card--active .portal-card__content {
-        opacity: 1;
-        max-width: 720px;
-    }
-
-    .portal-panels.portal-panels--has-active .portal-card.portal-card--active .portal-card__list--tags {
-        opacity: 1;
-        max-height: 180px;
-    }
-
-    .portal-panels .portal-card:hover,
-    .portal-panels .portal-card:focus-within {
-        transform: none;
     }
 }
 
@@ -3208,9 +3795,12 @@ body.ecosystem-landing {
     }
 
     .ecosystem-hero__brand {
-        letter-spacing: 0.28em;
-        text-indent: 0.28em;
         margin-bottom: 20px;
+    }
+
+    .ecosystem-hero__brand img {
+        width: clamp(30px, 42vw, 200px);
+        max-height: 72px;
     }
 
     .ecosystem-portals__stats {
@@ -3231,7 +3821,7 @@ body.ecosystem-landing {
     }
 
     .ecosystem-portals {
-        padding: 120px 12px 48px;
+        padding: 30px 12px 48px !important;
     }
 
     .portal-card {
@@ -3260,6 +3850,7 @@ body.ecosystem-landing {
     .ecosystem-home__lead,
     .marine-portal__lead {
         font-size: 0.88rem;
+        margin-top: 30px;
         margin-bottom: 20px;
     }
 

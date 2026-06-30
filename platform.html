@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIGSA — Global Integrated Interoceanic Infrastructure Platform</title>
-    <meta name="description" content="Integrated interoceanic infrastructure platform. Private capital, BOT model, 372 km multimodal corridor in Guatemala.">
+    <title>CIGSA — Global Integrated Interoceanic Platform</title>
+    <meta name="description" content="Integrated interoceanic platform. Private capital, BOT model, 372 km multimodal corridor in Guatemala.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -12,8 +12,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo" title="CIGSA Digital Ecosystem">
-                <span class="logo-icon">C</span>
-                <span class="logo-text">CIGSA</span>
+                <img src="./img/logocigsa.png" alt="Interoceanic Corridor of Guatemala" width="200">
             </a>
             <div class="nav-menu">
             <ul class="nav-links">
@@ -26,7 +25,16 @@
                 <li><a href="equipo-contacto.html">TEAM & CONTACT</a></li>
             </ul>
             <div class="nav-right">
-<a href="equipo-contacto.html" class="btn-investor">Request Access</a>
+                <div class="lang-switch" aria-label="Language">
+                    <button class="lang-btn" type="button" data-lang="en" aria-pressed="true">EN</button>
+                    <span class="lang-sep">/</span>
+                    <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">ES</button>
+                </div>
+                <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme">
+                    <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀</span>
+                    <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+                </button>
+                <a href="equipo-contacto.html" class="btn-investor">Request Access</a>
             </div>
             </div>
             <button class="mobile-toggle" aria-label="Menu">
@@ -37,60 +45,155 @@
 
     <section class="hero hero-home" id="inicio">
         <div class="hero-bg" aria-hidden="true">
-            <img src="./barc01.jpeg" alt="Interoceanic port and infrastructure — CIGSA">
+            <img src="./barc01.jpeg" alt="Interoceanic port — CIGSA">
             <div class="hero-bg-overlay"></div>
         </div>
         <div class="hero-content">
-            <p class="section-tag">CIGSA — STRATEGIC PLATFORM</p>
-            <h1>Global Integrated Interoceanic Infrastructure Platform</h1>
-            <p class="hero-subtitle">An $8B private-capital infrastructure platform under the Build-Operate-Transfer model, positioned as a sovereign alternative to the Panama Canal and as a new bi-oceanic logistics system for 21st-century trade.</p>
+            <p class="section-tag" data-i18n="platform.hero.tag">CIGSA — STRATEGIC PLATFORM</p>
+            <h1 data-i18n="platform.hero.title">Building the next global trade route for the 21st century </h1>
+            <p class="hero-subtitle" data-i18n="platform.hero.subtitle">Connecting the Atlantic and Pacific through Guatemala with an integrated multimodal bi-oceanic logistics system</p>
             <div class="hero-buttons">
-                <a href="./proyecto.html" class="btn btn-primary">View project</a>
-                <a href="./inversion.html" class="btn btn-outline">Investment structure</a>
+                <a href="./proyecto.html" class="btn btn-primary" data-i18n="platform.hero.btnProject">Discover the Project</a>
+                <a href="./inversion.html" class="btn btn-outline" data-i18n="platform.hero.btnInvestment">Investment Opportunities</a>
             </div>
         </div>
-        <div class="hero-stats">
+        <div class="hero-stats hero-stats--strip">
             <div class="stat">
-                <span class="stat-value">372 km</span>
-                <span class="stat-label">Double-track railway</span>
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22c4-6 8-8 12-8s8 2 12 8"/><path d="M10 18l4-6 4 4 6-8"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">372 km</span>
+                    <span class="stat-label" data-i18n="platform.stat.corridor">Interoceanic Corridor</span>
+                </div>
             </div>
             <div class="stat">
-                <span class="stat-value">17.5 m</span>
-                <span class="stat-label">Port draft (Super Post Panamax)</span>
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 18c3-2 6-2 9 0s6 2 9 0 6-2 9 0"/><path d="M4 22c3-2 6-2 9 0s6 2 9 0 6-2 9 0"/><path d="M4 14c3-2 6-2 9 0s6 2 9 0 6-2 9 0"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">2</span>
+                    <span class="stat-label" data-i18n="platform.stat.oceans">Oceans Connected</span>
+                </div>
             </div>
             <div class="stat">
-                <span class="stat-value">$8B</span>
-                <span class="stat-label">Private capital</span>
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="4"/><circle cx="8" cy="10" r="2.5"/><circle cx="24" cy="10" r="2.5"/><circle cx="8" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/><path d="M10 11l4 3M22 11l-4 3M10 23l4-3M22 23l-4-3"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">5+</span>
+                    <span class="stat-label" data-i18n="platform.stat.hubs">Logistics Hubs</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6v4"/><path d="M10 10h12"/><path d="M12 10v4c0 4 1.8 8 4 10s4 6 4 10"/><path d="M20 10v4c0 4-1.8 8-4 10"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">2</span>
+                    <span class="stat-label" data-i18n="platform.stat.ports">Deep-water Ports 18 m Draft</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20h24"/><path d="M8 20V14"/><path d="M24 20V14"/><path d="M6 14h20"/><path d="M10 11h2M20 11h2"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">375 km</span>
+                    <span class="stat-label" data-i18n="platform.stat.rail">Double-track Railway</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8l-6 10h5l-3 8 9-13h-5l2-5z"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label" data-i18n="platform.stat.energy">Independent Energy Systems</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24h20"/><path d="M8 20l4-8h8l4 8"/><path d="M12 12V8h8v4"/><path d="M4 24c2-2 4-3 6-3"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">25K+</span>
+                    <span class="stat-label" data-i18n="platform.stat.teu">TEU Vessels Ready</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 26V14l4-3 4 3v12"/><path d="M8 26h16"/><path d="M18 8l6-2v6"/><path d="M20 6v4"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">5,000+ ha</span>
+                    <span class="stat-label" data-i18n="platform.stat.land">Development Land</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="3"/><circle cx="22" cy="12" r="2.5"/><path d="M6 24c0-4 2.5-6 6-6s6 2 6 6"/><path d="M18 24c0-3 2-4.5 4-4.5"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">3,700+</span>
+                    <span class="stat-label" data-i18n="platform.stat.families">Families Engaged</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="8" width="18" height="18" rx="2"/><path d="M11 6v4M21 6v4"/><path d="M11 18l3 3 6-6"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">26+</span>
+                    <span class="stat-label" data-i18n="platform.stat.vision">Years of Vision</span>
+                </div>
+            </div>
+            <div class="stat">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="16" height="12" rx="1"/><path d="M12 12V10a4 4 0 0 1 8 0v2"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value">100K+</span>
+                    <span class="stat-label" data-i18n="platform.stat.jobs">Jobs Potential</span>
+                </div>
+            </div>
+            <div class="stat stat--feature">
+                <span class="stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24V14"/><path d="M14 24V10"/><path d="M20 24V16"/><path d="M26 24V8"/><path d="M26 8l-4 4"/><path d="M26 8v4"/></svg>
+                </span>
+                <div class="stat-body">
+                    <span class="stat-value stat-value--text" data-i18n="platform.stat.impact">Potential Economic Impact</span>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section home-teaser" id="teaser-proyecto">
         <div class="container">
-            <p class="section-tag">PHYSICAL ASSET</p>
+            <p class="section-tag" data-i18n="platform.asset.tag">PHYSICAL ASSET</p>
             <div class="home-teaser-header">
-                <h2>Multimodal infrastructure on Guatemalan territory</h2>
-                <p class="section-desc">An integrated system linking logistics, energy, and industry: a 372 km land corridor, two deep-water ports, double-track railway, and an energy corridor with pipelines and gas ducts.</p>
+                <h2 data-i18n="platform.asset.title">Multimodal on Guatemalan territory</h2>
+                <p class="section-desc" data-i18n="platform.asset.desc">An integrated system linking logistics, energy, and industry: a 372 km land corridor, two deep-water ports, double-track railway, and an energy corridor with pipelines and gas ducts.</p>
             </div>
             <div class="home-pillars">
                 <article class="home-pillar">
                     <div class="pillar-icon">⚓</div>
-                    <h3>Deep-water ports</h3>
-                    <p>San Luis (Pacific) and San Jorge (Atlantic) with 17.5 m draft for Super Post Panamax vessels.</p>
+                    <h3 data-i18n="platform.pillar.ports.title">Deep-water ports</h3>
+                    <p data-i18n="platform.pillar.ports.desc">San Luis (Pacific) and San Jorge (Atlantic) with 17.5 m draft for Super Post Panamax vessels.</p>
                 </article>
                 <article class="home-pillar">
                     <div class="pillar-icon">🚂</div>
-                    <h3>Double-track railway</h3>
-                    <p>372 km of high-capacity rail corridor for interoceanic freight.</p>
+                    <h3 data-i18n="platform.pillar.rail.title">Double-track railway</h3>
+                    <p data-i18n="platform.pillar.rail.desc">372 km of high-capacity rail corridor for interoceanic freight.</p>
                 </article>
                 <article class="home-pillar">
                     <div class="pillar-icon">⚡</div>
-                    <h3>Energy corridor</h3>
-                    <p>Pipelines and gas ducts integrated into the logistics-industrial ecosystem.</p>
+                    <h3 data-i18n="platform.pillar.energy.title">Energy corridor</h3>
+                    <p data-i18n="platform.pillar.energy.desc">Pipelines and gas ducts integrated into the logistics-industrial ecosystem.</p>
                 </article>
             </div>
             <div class="home-cta-row">
-                <a href="./proyecto.html" class="btn btn-primary">View full project</a>
+                <a href="./proyecto.html" class="btn btn-primary" data-i18n="platform.asset.cta">View full project</a>
             </div>
         </div>
     </section>
@@ -99,7 +202,7 @@
         <div class="container">
             <p class="section-tag">BENCHMARK</p>
             <h2>Positioning against global corridors</h2>
-            <p class="section-desc">Comparison for institutional investors. CIGSA is presented as an integrated private platform, not isolated state infrastructure.</p>
+            <p class="section-desc">Comparison for institutional investors. CIGSA is presented as an integrated private platform, not isolated state projects.</p>
             <div class="benchmark benchmark-compact">
                 <div class="table-wrapper">
                     <table>
@@ -159,19 +262,19 @@
     <section class="section home-teaser">
         <div class="container home-split">
             <div>
-                <p class="section-tag">FINANCIAL VEHICLE</p>
-                <h2>Structure for institutional capital</h2>
-                <p class="section-desc">100% private project based on use-rights assignment and recurring flows across port, rail, energy, and industrial verticals. BOT concession model with returns tied to system operations.</p>
+                <p class="section-tag" data-i18n="platform.finance.tag">FINANCIAL VEHICLE</p>
+                <h2 data-i18n="platform.finance.title">Structure for institutional capital</h2>
+                <p class="section-desc" data-i18n="platform.finance.desc">100% private project based on use-rights assignment and recurring flows across port, rail, energy, and industrial verticals. BOT concession model with returns tied to system operations.</p>
                 <ul class="home-list">
-                    <li>Diversified revenue: port, railway, energy, and industry</li>
-                    <li>COINGT: regulated digital asset backed by real assets (land and corporate equity)</li>
-                    <li>7.6612% of distributable dividends allocated to COINGT holders</li>
-                    <li>Digital regulatory framework in El Salvador</li>
+                    <li data-i18n="platform.finance.li1">Diversified revenue: port, railway, energy, and industry</li>
+                    <li data-i18n="platform.finance.li2">COINGT: regulated digital asset backed by real assets (land and corporate equity)</li>
+                    <li data-i18n="platform.finance.li3">7.6612% of distributable dividends allocated to COINGT holders</li>
+                    <li data-i18n="platform.finance.li4">Digital regulatory framework in El Salvador</li>
                 </ul>
-                <a href="./inversion.html" class="btn btn-primary">Explore investment structure</a>
+                <a href="./inversion.html" class="btn btn-primary" data-i18n="platform.finance.cta">Explore investment structure</a>
             </div>
             <div class="home-split-visual">
-                <img src="./barc.jpeg" alt="Financial structure and CIGSA project infrastructure">
+                <img src="./barc.jpeg" alt="Financial structure and CIGSA project">
             </div>
         </div>
     </section>
@@ -182,48 +285,48 @@
                 <img src="./mapa.png" alt="Inclusive governance model and CIGSA interoceanic corridor">
             </div>
             <div>
-                <p class="section-tag">GOVERNANCE</p>
-                <h2>Due diligence advantage: inclusive capitalism</h2>
-                <p class="section-desc">CIGSA is the sole promoter, owner of 100% of the land, and Master Developer of the system. Territorial risk is mitigated by integrating local communities as economic shareholders, not excluded third parties.</p>
+                <p class="section-tag" data-i18n="platform.gov.tag">GOVERNANCE</p>
+                <h2 data-i18n="platform.gov.title">Due diligence advantage: inclusive capitalism</h2>
+                <p class="section-desc" data-i18n="platform.gov.desc">CIGSA is the sole promoter, owner of 100% of the land, and Master Developer of the system. Territorial risk is mitigated by integrating local communities as economic shareholders, not excluded third parties.</p>
                 <div class="governance-highlight governance-highlight-compact">
-                    <span class="gov-label">Integrated Guatemalan families</span>
+                    <span class="gov-label" data-i18n="platform.gov.label">Integrated Guatemalan families</span>
                     <span class="gov-value">3,530</span>
-                    <p>Voluntary territorial access agreements. Local landowners as stakeholders aligned with the project.</p>
+                    <p data-i18n="platform.gov.highlight">Voluntary territorial access agreements. Local landowners as stakeholders aligned with the project.</p>
                 </div>
                 <ul class="home-list checkmarks">
-                    <li>Eliminates expropriation risk — landowners are shareholders</li>
-                    <li>Reduces ESG exposure for institutional investors</li>
-                    <li>Documented social license to operate</li>
+                    <li data-i18n="platform.gov.li1">Eliminates expropriation risk — landowners are shareholders</li>
+                    <li data-i18n="platform.gov.li2">Reduces ESG exposure for institutional investors</li>
+                    <li data-i18n="platform.gov.li3">Documented social license to operate</li>
                 </ul>
-                <a href="./gobernanza.html" class="btn btn-outline">Learn about the governance model</a>
+                <a href="./gobernanza.html" class="btn btn-outline" data-i18n="platform.gov.cta">Learn about the governance model</a>
             </div>
         </div>
     </section>
 
     <section class="section home-teaser" id="teaser-equipo">
         <div class="container">
-            <p class="section-tag">LEADERSHIP</p>
-            <h2>Executive leadership and institutional validation</h2>
-            <p class="section-desc">Structured engagement: ODEPAL Presidency (Guillermo Catalán), Vice Presidency (Herbert Fernández), Communications (Alicia and Santiago Bassols), and international strategy (Rolando Melgar).</p>
+            <p class="section-tag" data-i18n="platform.lead.tag">LEADERSHIP</p>
+            <h2 data-i18n="platform.lead.title">Executive leadership and institutional validation</h2>
+            <p class="section-desc" data-i18n="platform.lead.desc">Structured engagement: ODEPAL Presidency (Guillermo Catalán), Vice Presidency (Herbert Fernández), Communications (Alicia and Santiago Bassols), and international strategy (Rolando Melgar).</p>
             <div class="leadership-grid">
                 <article class="leader-card">
-                    <span class="leader-role">Presidency</span>
+                    <span class="leader-role" data-i18n="platform.lead.role1">Presidency</span>
                     <h3>Guillermo Catalán</h3>
-                    <span class="leader-title">ODEPAL · Lead spokesperson</span>
+                    <span class="leader-title" data-i18n="platform.lead.title1">ODEPAL · Lead spokesperson</span>
                 </article>
                 <article class="leader-card">
-                    <span class="leader-role">Vice Presidency</span>
+                    <span class="leader-role" data-i18n="platform.lead.role2">Vice Presidency</span>
                     <h3>Herbert Fernández</h3>
-                    <span class="leader-title">Message validation</span>
+                    <span class="leader-title" data-i18n="platform.lead.title2">Message validation</span>
                 </article>
                 <article class="leader-card">
-                    <span class="leader-role">Communications</span>
+                    <span class="leader-role" data-i18n="platform.lead.role3">Communications</span>
                     <h3>Alicia & Santiago Bassols</h3>
-                    <span class="leader-title">Narrative and investors</span>
+                    <span class="leader-title" data-i18n="platform.lead.title3">Narrative and investors</span>
                 </article>
             </div>
             <div class="home-cta-row">
-                <a href="equipo-contacto.html" class="btn btn-primary">Contact the team</a>
+                <a href="equipo-contacto.html" class="btn btn-primary" data-i18n="platform.lead.cta">Contact the team</a>
             </div>
         </div>
     </section>
@@ -236,7 +339,7 @@
                     <span class="logo-text">CIGSA</span>
                 </a>
                 <p class="footer-copy">© 2026 CIGSA — Interoceanic Corridor of Guatemala.</p>
-                <p class="footer-disclaimer">Confidential material intended for institutional recipients only. Global Integrated Interoceanic Infrastructure Platform.</p>
+                <p class="footer-disclaimer">Confidential material intended for institutional recipients only. Global Integrated Interoceanic Platform.</p>
             </div>
             <div class="footer-col">
                 <h4>Navigation</h4>
@@ -270,6 +373,9 @@
             </div>
         </div>
     </footer>
+<script src="translations.js"></script>
+<script src="translations-pages.js"></script>
+<script src="i18n.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
